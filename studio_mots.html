@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Studio Mots mêlés — MURMURE</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A14;--card:#12101C;--card2:#1A1730;--border:#2E2A4A;--fg:#F3EFE6;--muted:#9A93B0;
+  --accent:#8B5CF6;--gold:#E8C36A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:'Outfit',system-ui,sans-serif;color:var(--fg)}
+#shell{min-height:100dvh;display:grid;grid-template-columns:minmax(280px,380px) 1fr}
+@media(max-width:900px){#shell{grid-template-columns:1fr}}
+#studio{background:linear-gradient(180deg,#120e22 0%,#070A14 100%);border-right:1px solid var(--border);padding:16px 16px 28px;overflow:auto;max-height:100dvh}
+@media(max-width:900px){#studio{max-height:none;border-right:none;border-bottom:1px solid var(--border)}}
+.studioHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+.studioHead h1{font-size:18px;font-weight:900;letter-spacing:-.4px;line-height:1.2}
+.studioHead p{color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+.badge{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);border:1px solid #8A6A2A;background:#1A1408;border-radius:999px;padding:4px 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px}
+.card h2{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px}
+label.fld{display:block;font-size:11px;color:var(--muted);font-weight:700;margin:8px 0 4px}
+input[type=text],textarea,select{width:100%;background:var(--card2);border:1px solid var(--border);color:var(--fg);border-radius:10px;padding:8px 10px;font-family:inherit;font-size:13px}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:10px;color:var(--muted);line-height:1.35;margin-top:6px}
+.actions{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.btn{border:none;border-radius:12px;padding:10px 12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;text-decoration:none;display:block;text-align:center;color:inherit}
+.btnGo{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff}
+.btnGhost{background:var(--card2);color:var(--fg);border:1px solid var(--border)}
+#playCol{display:flex;flex-direction:column;min-height:100dvh;padding:8px;align-items:center}
+#app{width:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+#top{position:relative;display:flex;align-items:center;justify-content:center;height:50px}
+#back{position:absolute;left:0;top:50%;transform:translateY(-50%);background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:12px;width:48px;height:48px;font-size:8px;line-height:10px;font-weight:700;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#title{font-size:20px;font-weight:900;letter-spacing:.18em;color:var(--gold)}
+#tag{text-align:center;font-size:12px;color:var(--muted)}
+#infos{display:flex;gap:6px;justify-content:center}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700}
+#grid{display:grid;gap:3px;width:100%;user-select:none;touch-action:none}
+.cell{aspect-ratio:1;display:grid;place-items:center;background:var(--card);border:1px solid var(--border);border-radius:6px;font-weight:800;font-size:13px;cursor:pointer}
+.cell.hot{background:#2a2150;border-color:var(--gold);color:var(--gold)}
+.cell.found{background:#1a3a28;border-color:#10B981;color:#6ee7b7}
+#words{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.word{font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;border:1px solid var(--border);border-radius:999px;padding:4px 10px;color:var(--muted)}
+.word.ok{color:#6ee7b7;border-color:#10B981;text-decoration:line-through}
+#overlay{display:none;place-items:center;background:rgba(8,6,16,.82);backdrop-filter:blur(12px);border-radius:16px;padding:28px 20px;text-align:center;border:1px solid var(--border)}
+#overlay.show{display:grid}
+#ovTitle{font-size:24px;font-weight:900;color:var(--gold)}
+#ovText{margin:8px 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+.btnPrimary{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border:none;border-radius:999px;padding:11px 26px;font-weight:800;cursor:pointer;font-family:inherit}
+</style>
+</head>
+<body>
+<div id="shell">
+  <aside id="studio">
+    <div class="studioHead">
+      <div>
+        <h1>Studio Mots mêlés</h1>
+        <p>Une liste. Une grille. Le vocabulaire de la marque.</p>
+      </div>
+      <span class="badge">MURMURE</span>
+    </div>
+    <div class="card">
+      <h2>Identité</h2>
+      <label class="fld">Titre</label>
+      <input type="text" id="cfgTitle" maxlength="24" value="MURMURE">
+      <label class="fld">Sous-titre</label>
+      <input type="text" id="cfgTag" maxlength="70" value="Trouvez les mots du silence.">
+    </div>
+    <div class="card">
+      <h2>Mots — un par ligne</h2>
+      <textarea id="cfgWords">SILENCE
+FOCUS
+CASQUE
+FIL
+ONDE
+CALME
+MURMURE</textarea>
+      <label class="fld">Taille de grille</label>
+      <select id="cfgSize">
+        <option value="8">8 × 8</option>
+        <option value="10" selected>10 × 10</option>
+        <option value="12">12 × 12</option>
+      </select>
+      <p class="hint">Glissez le doigt ou la souris d’une lettre à l’autre, en ligne droite.</p>
+    </div>
+    <div class="card">
+      <h2>Écran de fin</h2>
+      <textarea id="cfgEnd">Tout le vocabulaire est là. Le fil aussi.</textarea>
+    </div>
+    <div class="actions">
+      <button class="btn btnGo" id="btnGen">Générer une nouvelle grille</button>
+      <a class="btn btnGhost" href="studio.html">Retour catalogue</a>
+    </div>
+  </aside>
+  <section id="playCol">
+    <div id="app">
+      <div id="top">
+        <a id="back" href="studio.html">Retour<br>studio</a>
+        <div id="title">MURMURE</div>
+      </div>
+      <div id="tag">Trouvez les mots du silence.</div>
+      <div id="infos">
+        <div class="pill">TROUVÉS <span id="found">0</span>/<span id="need">0</span></div>
+      </div>
+      <div id="grid"></div>
+      <div id="words"></div>
+      <div id="overlay">
+        <div>
+          <h2 id="ovTitle">MURMURE</h2>
+          <p id="ovText"></p>
+          <button class="btnPrimary" id="ovBtn">Nouvelle grille</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+function $(id){return document.getElementById(id)}
+const DIRS=[[1,0],[0,1],[1,1],[-1,1],[1,-1]];
+let N=10, grid=[], words=[], placed=[], found=new Set(), drag=[];
+function letters(){return $("cfgWords").value.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").split(/\n/).map(s=>s.replace(/[^A-Z]/g,"").trim()).filter(s=>s.length>=3);}
+function applyChrome(){
+  $("title").textContent=$("cfgTitle").value;
+  $("tag").textContent=$("cfgTag").value;
+}
+function canPlace(word,x,y,dx,dy){
+  for(let i=0;i<word.length;i++){
+    const cx=x+dx*i, cy=y+dy*i;
+    if(cx<0||cy<0||cx>=N||cy>=N) return false;
+    const ch=grid[cy][cx];
+    if(ch && ch!==word[i]) return false;
+  }
+  return true;
+}
+function place(word){
+  const tries=200;
+  for(let t=0;t<tries;t++){
+    const [dx,dy]=DIRS[Math.floor(Math.random()*DIRS.length)];
+    const x=Math.floor(Math.random()*N), y=Math.floor(Math.random()*N);
+    if(!canPlace(word,x,y,dx,dy)) continue;
+    const cells=[];
+    for(let i=0;i<word.length;i++){
+      const cx=x+dx*i, cy=y+dy*i;
+      grid[cy][cx]=word[i];
+      cells.push(cy*N+cx);
+    }
+    placed.push({word,cells});
+    return true;
+  }
+  return false;
+}
+function generate(){
+  N=+$("cfgSize").value;
+  words=letters();
+  found=new Set(); drag=[];
+  $("overlay").classList.remove("show");
+  let ok=false;
+  for(let attempt=0;attempt<8 && !ok;attempt++){
+    grid=Array.from({length:N},()=>Array(N).fill(""));
+    placed=[];
+    ok=words.every(w=>place(w));
+  }
+  const ABC="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for(let y=0;y<N;y++) for(let x=0;x<N;x++) if(!grid[y][x]) grid[y][x]=ABC[Math.floor(Math.random()*26)];
+  $("need").textContent=words.length;
+  $("found").textContent=0;
+  render();
+}
+function render(){
+  const g=$("grid");
+  g.style.gridTemplateColumns=`repeat(${N},1fr)`;
+  g.innerHTML="";
+  for(let y=0;y<N;y++) for(let x=0;x<N;x++){
+    const i=y*N+x;
+    const el=document.createElement("div");
+    el.className="cell";
+    el.dataset.i=i;
+    el.textContent=grid[y][x];
+    if([...found].some(w=>placed.find(p=>p.word===w && p.cells.includes(i)))) el.classList.add("found");
+    if(drag.includes(i)) el.classList.add("hot");
+    g.appendChild(el);
+  }
+  const w=$("words"); w.innerHTML="";
+  words.forEach(word=>{
+    const s=document.createElement("span");
+    s.className="word"+(found.has(word)?" ok":"");
+    s.textContent=word;
+    w.appendChild(s);
+  });
+}
+function idxFromEvent(e){
+  const t=(e.touches?e.touches[0]:e).target;
+  if(!t.dataset.i) return null;
+  return +t.dataset.i;
+}
+function startDrag(e){e.preventDefault(); const i=idxFromEvent(e); if(i==null) return; drag=[i]; render();}
+function moveDrag(e){
+  if(!drag.length) return;
+  const i=idxFromEvent(e); if(i==null) return;
+  if(drag[0]===i){drag=[i]; render(); return;}
+  const x0=drag[0]%N, y0=Math.floor(drag[0]/N);
+  const x1=i%N, y1=Math.floor(i/N);
+  const dx=Math.sign(x1-x0), dy=Math.sign(y1-y0);
+  if(dx!==0 && dy!==0 && Math.abs(x1-x0)!==Math.abs(y1-y0)) return;
+  if(dx===0 && dy===0) return;
+  const path=[drag[0]];
+  let x=x0, y=y0;
+  while(x!==x1 || y!==y1){
+    x+=dx; y+=dy;
+    path.push(y*N+x);
+  }
+  drag=path; render();
+}
+function endDrag(){
+  if(drag.length<2){drag=[]; render(); return;}
+  const str=drag.map(i=>grid[Math.floor(i/N)][i%N]).join("");
+  const rev=str.split("").reverse().join("");
+  const hit=words.find(w=>w===str || w===rev);
+  if(hit && !found.has(hit)){
+    const p=placed.find(x=>x.word===hit);
+    const same=[...drag].sort().join()===[...p.cells].sort().join() || [...drag].reverse().sort().join()===[...p.cells].sort().join();
+    // accept if letters match word even if placement path equals cells
+    found.add(hit);
+    $("found").textContent=found.size;
+    if(found.size===words.length){
+      $("ovTitle").textContent=$("cfgTitle").value;
+      $("ovText").textContent=$("cfgEnd").value;
+      $("overlay").classList.add("show");
+    }
+  }
+  drag=[]; render();
+}
+const g=$("grid");
+g.addEventListener("mousedown",startDrag);
+window.addEventListener("mousemove",e=>{if(drag.length) moveDrag(e);});
+window.addEventListener("mouseup",endDrag);
+g.addEventListener("touchstart",startDrag,{passive:false});
+g.addEventListener("touchmove",moveDrag,{passive:false});
+g.addEventListener("touchend",endDrag);
+$("cfgTitle").oninput=applyChrome;
+$("cfgTag").oninput=applyChrome;
+$("btnGen").onclick=generate;
+$("ovBtn").onclick=generate;
+applyChrome(); generate();
+</script>
+</body>
+</html>

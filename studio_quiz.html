@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Studio Quiz — MURMURE</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A14;--card:#12101C;--card2:#1A1730;--border:#2E2A4A;--fg:#F3EFE6;--muted:#9A93B0;
+  --accent:#8B5CF6;--gold:#E8C36A;--ok:#10B981;--ko:#F43F5E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:'Outfit',system-ui,sans-serif;color:var(--fg)}
+#shell{min-height:100dvh;display:grid;grid-template-columns:minmax(280px,380px) 1fr}
+@media(max-width:900px){#shell{grid-template-columns:1fr}}
+#studio{background:linear-gradient(180deg,#120e22 0%,#070A14 100%);border-right:1px solid var(--border);padding:16px 16px 28px;overflow:auto;max-height:100dvh}
+@media(max-width:900px){#studio{max-height:none;border-right:none;border-bottom:1px solid var(--border)}}
+.studioHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+.studioHead h1{font-size:18px;font-weight:900;letter-spacing:-.4px;line-height:1.2}
+.studioHead p{color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+.badge{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);border:1px solid #8A6A2A;background:#1A1408;border-radius:999px;padding:4px 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px}
+.card h2{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px}
+label.fld{display:block;font-size:11px;color:var(--muted);font-weight:700;margin:8px 0 4px}
+input[type=text],textarea{width:100%;background:var(--card2);border:1px solid var(--border);color:var(--fg);border-radius:10px;padding:8px 10px;font-family:inherit;font-size:13px}
+textarea{min-height:180px;resize:vertical;font-size:12px;line-height:1.45}
+.hint{font-size:10px;color:var(--muted);line-height:1.35;margin-top:6px}
+.actions{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.btn{border:none;border-radius:12px;padding:10px 12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;text-decoration:none;display:block;text-align:center;color:inherit}
+.btnGo{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff}
+.btnGhost{background:var(--card2);color:var(--fg);border:1px solid var(--border)}
+#playCol{display:flex;flex-direction:column;min-height:100dvh;padding:8px;align-items:center}
+#app{width:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+#top{position:relative;display:flex;align-items:center;justify-content:center;height:50px}
+#back{position:absolute;left:0;top:50%;transform:translateY(-50%);background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:12px;width:48px;height:48px;font-size:8px;line-height:10px;font-weight:700;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#title{font-size:20px;font-weight:900;letter-spacing:.18em;color:var(--gold)}
+#tag{text-align:center;font-size:12px;color:var(--muted)}
+#infos{display:flex;gap:6px;justify-content:center}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700}
+#qbox{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 16px}
+#qtext{font-size:18px;font-weight:800;line-height:1.35;margin-bottom:14px}
+.ans{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--border);color:var(--fg);border-radius:12px;padding:12px 14px;margin-bottom:8px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+.ans:hover{border-color:var(--gold)}
+.ans.good{background:#0d2a22;border-color:var(--ok);color:#6ee7b7}
+.ans.bad{background:#2a1218;border-color:var(--ko);color:#fda4af}
+#overlay{display:none;place-items:center;background:rgba(8,6,16,.82);backdrop-filter:blur(12px);border-radius:16px;padding:28px 20px;text-align:center;border:1px solid var(--border)}
+#overlay.show{display:grid}
+#ovTitle{font-size:24px;font-weight:900;color:var(--gold)}
+#ovText{margin:8px 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+.btnPrimary{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border:none;border-radius:999px;padding:11px 26px;font-weight:800;cursor:pointer;font-family:inherit}
+</style>
+</head>
+<body>
+<div id="shell">
+  <aside id="studio">
+    <div class="studioHead">
+      <div>
+        <h1>Studio Quiz</h1>
+        <p>Questions de marque. Scoring. Offre à la fin.</p>
+      </div>
+      <span class="badge">MURMURE</span>
+    </div>
+    <div class="card">
+      <h2>Identité</h2>
+      <label class="fld">Titre</label>
+      <input type="text" id="cfgTitle" maxlength="24" value="MURMURE">
+      <label class="fld">Sous-titre</label>
+      <input type="text" id="cfgTag" maxlength="70" value="Quatre questions. Un peu de calme.">
+    </div>
+    <div class="card">
+      <h2>Questions</h2>
+      <p class="hint" style="margin-top:0">Une question par bloc. Première ligne = question. Lignes suivantes = réponses. Préfixez la bonne par *.</p>
+      <textarea id="cfgQs">Quel bruit MURMURE éteint en premier ?
+Open space
+*Le vôtre, quand vous le décidez
+Perceuse
+Klaxon
+
+Le fil, c’est :
+Un câble audio
+*Ce que vous étiez en train de faire
+Une newsletter
+Un slogan concurrent
+
+Un bonus « Pare-bruit », ça fait quoi ?
+Ça double le volume
+*Ça tient le vacarme à distance
+Ça soigne une oreille
+Ça appelle le voisin
+
+La promesse MURMURE :
+Moins de décibels médicaux
+*On casse le bruit. Vous gardez le fil.
+Silence total garanti
+Offre 2+1</textarea>
+    </div>
+    <div class="card">
+      <h2>Écran de fin / offre</h2>
+      <textarea id="cfgEnd">Code FOCUS10 — un essai du mode focus. Pas de jargon médical.</textarea>
+    </div>
+    <div class="actions">
+      <button class="btn btnGo" id="btnStart">Relancer le quiz</button>
+      <a class="btn btnGhost" href="studio.html">Retour catalogue</a>
+    </div>
+  </aside>
+  <section id="playCol">
+    <div id="app">
+      <div id="top">
+        <a id="back" href="studio.html">Retour<br>studio</a>
+        <div id="title">MURMURE</div>
+      </div>
+      <div id="tag">Quatre questions. Un peu de calme.</div>
+      <div id="infos">
+        <div class="pill">Q <span id="qi">1</span>/<span id="qn">4</span></div>
+        <div class="pill">SCORE <span id="sc">0</span></div>
+      </div>
+      <div id="qbox">
+        <div id="qtext"></div>
+        <div id="answers"></div>
+      </div>
+      <div id="overlay">
+        <div>
+          <h2 id="ovTitle">MURMURE</h2>
+          <p id="ovText"></p>
+          <button class="btnPrimary" id="ovBtn">Rejouer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+function $(id){return document.getElementById(id)}
+function parseQs(raw){
+  return raw.split(/\n\s*\n/).map(block=>{
+    const lines=block.split("\n").map(s=>s.trim()).filter(Boolean);
+    if(lines.length<3) return null;
+    const q=lines[0];
+    const answers=lines.slice(1).map(l=>({text:l.replace(/^\*\s*/,""), ok:l.startsWith("*")}));
+    return {q, answers};
+  }).filter(Boolean);
+}
+let qs=[], i=0, score=0, lock=false;
+function applyChrome(){
+  $("title").textContent=$("cfgTitle").value;
+  $("tag").textContent=$("cfgTag").value;
+}
+function start(){
+  qs=parseQs($("cfgQs").value);
+  i=0; score=0; lock=false;
+  $("overlay").classList.remove("show");
+  $("qbox").style.display="block";
+  $("qn").textContent=qs.length;
+  $("sc").textContent=0;
+  show();
+}
+function show(){
+  if(i>=qs.length){finish(); return;}
+  const q=qs[i];
+  $("qi").textContent=i+1;
+  $("qtext").textContent=q.q;
+  const box=$("answers"); box.innerHTML="";
+  q.answers.forEach((a,idx)=>{
+    const b=document.createElement("button");
+    b.className="ans"; b.textContent=a.text;
+    b.onclick=()=>pick(idx,b);
+    box.appendChild(b);
+  });
+  lock=false;
+}
+function pick(idx,btn){
+  if(lock) return; lock=true;
+  const q=qs[i];
+  [...$("answers").children].forEach((el,k)=>{
+    if(q.answers[k].ok) el.classList.add("good");
+  });
+  if(q.answers[idx].ok){score++; $("sc").textContent=score;}
+  else btn.classList.add("bad");
+  setTimeout(()=>{i++; show();},750);
+}
+function finish(){
+  $("qbox").style.display="none";
+  $("ovTitle").textContent=$("cfgTitle").value;
+  $("ovText").textContent = score+" / "+qs.length+" — "+$("cfgEnd").value;
+  $("overlay").classList.add("show");
+}
+$("cfgTitle").oninput=applyChrome;
+$("cfgTag").oninput=applyChrome;
+$("btnStart").onclick=start;
+$("ovBtn").onclick=start;
+applyChrome(); start();
+</script>
+</body>
+</html>

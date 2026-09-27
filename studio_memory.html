@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Studio Memory — MURMURE</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A14;--card:#12101C;--card2:#1A1730;--border:#2E2A4A;--fg:#F3EFE6;--muted:#9A93B0;
+  --accent:#8B5CF6;--accent2:#E8C36A;--gold:#E8C36A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:'Outfit',system-ui,sans-serif;color:var(--fg)}
+#shell{min-height:100dvh;display:grid;grid-template-columns:minmax(280px,380px) 1fr}
+@media(max-width:900px){#shell{grid-template-columns:1fr}}
+#studio{background:linear-gradient(180deg,#120e22 0%,#070A14 100%);border-right:1px solid var(--border);padding:16px 16px 28px;overflow:auto;max-height:100dvh}
+@media(max-width:900px){#studio{max-height:none;border-right:none;border-bottom:1px solid var(--border)}}
+.studioHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+.studioHead h1{font-size:18px;font-weight:900;letter-spacing:-.4px;line-height:1.2}
+.studioHead p{color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+.badge{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);border:1px solid #8A6A2A;background:#1A1408;border-radius:999px;padding:4px 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px}
+.card h2{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px}
+label.fld{display:block;font-size:11px;color:var(--muted);font-weight:700;margin:8px 0 4px}
+input[type=text],textarea,select{width:100%;background:var(--card2);border:1px solid var(--border);color:var(--fg);border-radius:10px;padding:8px 10px;font-family:inherit;font-size:13px}
+textarea{min-height:56px;resize:vertical}
+.hint{font-size:10px;color:var(--muted);line-height:1.35;margin-top:6px}
+.colorLine{display:flex;align-items:center;gap:8px;margin-top:8px}
+.colorLine input[type=color]{width:42px;height:32px;border:none;background:none;padding:0;cursor:pointer}
+.upload{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.upload input[type=file]{font-size:11px;max-width:100%}
+.thumb{width:100%;height:64px;border-radius:10px;border:1px dashed var(--border);background:#0A0C18 center/cover no-repeat;margin-top:6px;display:grid;place-items:center;color:var(--muted);font-size:11px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.pair{display:grid;grid-template-columns:72px 1fr;gap:8px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.pair .mini{width:72px;height:52px;border-radius:8px;border:1px dashed var(--border);background:#0A0C18 center/cover no-repeat;display:grid;place-items:center;font-size:10px;color:var(--muted);overflow:hidden}
+.pair .mini img{width:100%;height:100%;object-fit:cover}
+.actions{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.btn{border:none;border-radius:12px;padding:10px 12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;text-decoration:none;display:block;text-align:center;color:inherit}
+.btnGo{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff}
+.btnGhost{background:var(--card2);color:var(--fg);border:1px solid var(--border)}
+.btnDanger{background:#2A1218;color:#FDA4AF;border:1px solid #4A1D2A}
+#playCol{display:flex;flex-direction:column;min-height:100dvh;padding:8px;align-items:center}
+#app{width:100%;max-width:520px;margin:0 auto;min-height:calc(100dvh - 16px);display:flex;flex-direction:column;gap:8px}
+#top{position:relative;display:flex;align-items:center;justify-content:center;height:50px}
+#back{position:absolute;left:0;top:50%;transform:translateY(-50%);background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:12px;width:48px;height:48px;font-size:8px;line-height:10px;font-weight:700;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#title{font-size:20px;font-weight:900;letter-spacing:.18em;color:var(--gold);text-align:center}
+#tag{text-align:center;font-size:12px;color:var(--muted);margin-top:-2px}
+#infos{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700}
+#board{display:grid;gap:8px;margin:8px auto 0;width:100%;max-width:460px}
+.mem{perspective:900px;aspect-ratio:3/4;cursor:pointer}
+.inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.7,.2,1);border-radius:12px}
+.mem.flip .inner,.mem.ok .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;overflow:hidden;border:1px solid var(--border);display:grid;place-items:center}
+.back{background:#1a1140 center/cover no-repeat;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.2em}
+.front{transform:rotateY(180deg);background:#0e0c18;color:#fff}
+.front img,.back img{width:100%;height:100%;object-fit:cover;display:block}
+.front .lbl{position:absolute;bottom:0;left:0;right:0;padding:6px 6px 7px;background:linear-gradient(transparent,rgba(0,0,0,.75));font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;text-align:center}
+.mem.ok{pointer-events:none}
+.mem.ok .face{box-shadow:0 0 0 2px var(--gold)}
+#overlay{display:none;place-items:center;background:rgba(8,6,16,.82);backdrop-filter:blur(12px);border-radius:16px;padding:28px 20px;text-align:center;border:1px solid var(--border);margin-top:8px}
+#overlay.show{display:grid}
+#ovTitle{font-size:24px;font-weight:900;color:var(--gold)}
+#ovText{margin:8px 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+.btnPrimary{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border:none;border-radius:999px;padding:11px 26px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit}
+</style>
+</head>
+<body>
+<div id="shell">
+  <aside id="studio">
+    <div class="studioHead">
+      <div>
+        <h1>Studio Memory</h1>
+        <p>Dos = logo. Paires = visuels de campagne. Ça s’applique tout de suite.</p>
+      </div>
+      <span class="badge">MURMURE</span>
+    </div>
+
+    <div class="card">
+      <h2>Identité</h2>
+      <label class="fld">Titre</label>
+      <input type="text" id="cfgTitle" maxlength="24" value="MURMURE">
+      <label class="fld">Sous-titre</label>
+      <input type="text" id="cfgTag" maxlength="60" value="On casse le bruit. Vous gardez le fil.">
+      <label class="fld">Nombre de paires</label>
+      <select id="cfgPairs">
+        <option value="4">4 paires — rapide</option>
+        <option value="6" selected>6 paires — stand</option>
+        <option value="8">8 paires — long</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>Dos de carte — logo</h2>
+      <div class="upload"><input type="file" id="cfgBack" accept="image/*"></div>
+      <div class="thumb" id="backThumb">Logo MURMURE</div>
+      <p class="hint">C’est la première chose que l’annonceur voit. Un logo net, fond uni.</p>
+    </div>
+
+    <div class="card">
+      <h2>Paires — visuels</h2>
+      <p class="hint" style="margin-top:0">Chaque image devient une paire. Sans upload, les visuels MURMURE restent.</p>
+      <div id="pairList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Couleur d’accent</h2>
+      <div class="colorLine">
+        <input type="color" id="cfgAccent" value="#E8C36A">
+        <span id="accHex" style="font-size:12px;font-weight:700">#E8C36A</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Écran de fin</h2>
+      <label class="fld">Message</label>
+      <textarea id="cfgEnd">Silence. Vous avez tout apparié.</textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn btnGo" id="btnDeal">Mélanger et relancer</button>
+      <button class="btn btnGhost" id="btnReset">Revenir à MURMURE</button>
+      <a class="btn btnGhost" href="studio.html">Retour catalogue</a>
+    </div>
+  </aside>
+
+  <section id="playCol">
+    <div id="app">
+      <div id="top">
+        <a id="back" href="studio.html">Retour<br>studio</a>
+        <div id="title">MURMURE</div>
+      </div>
+      <div id="tag">On casse le bruit. Vous gardez le fil.</div>
+      <div id="infos">
+        <div class="pill">COUPS <span id="moves">0</span></div>
+        <div class="pill">PAIRES <span id="found">0</span>/<span id="need">6</span></div>
+        <div class="pill" id="timer">0:00</div>
+      </div>
+      <div id="board"></div>
+      <div id="overlay">
+        <div>
+          <h2 id="ovTitle">Silence.</h2>
+          <p id="ovText"></p>
+          <button class="btnPrimary" id="ovBtn">Rejouer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+const DEFAULT_BACK = "murmure/logo.jpg";
+const DEFAULT_PAIRS = [
+  {label:"Open space", src:"murmure/bg_open_space.jpg"},
+  {label:"Perceuse", src:"murmure/bg_perceuse.jpg"},
+  {label:"Boucle", src:"murmure/bg_boucle.jpg"},
+  {label:"Lac", src:"murmure/fin_silence.jpg"},
+  {label:"Casque", src:"murmure/brique_open_space.jpg"},
+  {label:"Fil", src:"murmure/brique_perceuse.jpg"},
+  {label:"Onde", src:"murmure/brique_boucle.jpg"},
+  {label:"Marque", src:"murmure/logo.jpg"}
+];
+
+const state = {
+  title: "MURMURE",
+  tag: "On casse le bruit. Vous gardez le fil.",
+  end: "Silence. Vous avez tout apparié.",
+  accent: "#E8C36A",
+  nPairs: 6,
+  back: DEFAULT_BACK,
+  pairs: DEFAULT_PAIRS.map(p => ({...p}))
+};
+
+let deck = [], flipped = [], lock = false, moves = 0, found = 0, t0 = 0, tick = null, playing = false;
+
+function $(id){return document.getElementById(id)}
+
+function renderPairList(){
+  const box = $("pairList");
+  box.innerHTML = "";
+  state.pairs.forEach((p,i)=>{
+    const row = document.createElement("div");
+    row.className = "pair";
+    row.innerHTML = `
+      <div class="mini" id="mini${i}">${p.src ? `<img src="${p.src}" alt="">` : (i+1)}</div>
+      <div>
+        <input type="text" value="${p.label}" data-i="${i}" class="plabel">
+        <input type="file" accept="image/*" data-i="${i}" class="pfile" style="font-size:11px;margin-top:4px;width:100%">
+      </div>`;
+    box.appendChild(row);
+  });
+  box.querySelectorAll(".plabel").forEach(inp=>{
+    inp.oninput = ()=>{ state.pairs[+inp.dataset.i].label = inp.value; };
+  });
+  box.querySelectorAll(".pfile").forEach(inp=>{
+    inp.onchange = e=>{
+      const f = e.target.files[0]; if(!f) return;
+      const r = new FileReader();
+      r.onload = ()=>{
+        const i = +inp.dataset.i;
+        state.pairs[i].src = r.result;
+        $("mini"+i).innerHTML = `<img src="${r.result}" alt="">`;
+        deal(false);
+      };
+      r.readAsDataURL(f);
+    };
+  });
+}
+
+function applyChrome(){
+  $("title").textContent = state.title;
+  $("tag").textContent = state.tag;
+  document.documentElement.style.setProperty("--gold", state.accent);
+  document.documentElement.style.setProperty("--accent2", state.accent);
+}
+
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function deal(resetTimer=true){
+  $("overlay").classList.remove("show");
+  const n = state.nPairs;
+  const chosen = state.pairs.slice(0,n);
+  deck = shuffle(chosen.flatMap((p,i)=>[
+    {id:i, label:p.label, src:p.src, uid:i+"a"},
+    {id:i, label:p.label, src:p.src, uid:i+"b"}
+  ]));
+  flipped = []; lock = false; moves = 0; found = 0; playing = true;
+  $("moves").textContent = 0;
+  $("found").textContent = 0;
+  $("need").textContent = n;
+  const cols = n<=4 ? 4 : n<=6 ? 4 : 4;
+  $("board").style.gridTemplateColumns = `repeat(${cols},1fr)`;
+  $("board").innerHTML = "";
+  deck.forEach((c,idx)=>{
+    const el = document.createElement("div");
+    el.className = "mem";
+    el.dataset.idx = idx;
+    el.innerHTML = `<div class="inner">
+      <div class="face back">${state.back ? `<img src="${state.back}" alt="dos">` : "MURMURE"}</div>
+      <div class="face front">${c.src ? `<img src="${c.src}" alt=""><div class="lbl">${c.label}</div>` : `<div class="lbl">${c.label}</div>`}</div>
+    </div>`;
+    el.onclick = ()=>flip(idx, el);
+    $("board").appendChild(el);
+  });
+  if(resetTimer){
+    t0 = Date.now();
+    clearInterval(tick);
+    tick = setInterval(()=>{
+      const s = Math.floor((Date.now()-t0)/1000);
+      $("timer").textContent = Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+    },250);
+  }
+}
+
+function flip(idx, el){
+  if(!playing || lock || el.classList.contains("flip") || el.classList.contains("ok")) return;
+  el.classList.add("flip");
+  flipped.push({idx, el, card:deck[idx]});
+  if(flipped.length===2){
+    moves++; $("moves").textContent = moves;
+    const [a,b] = flipped;
+    if(a.card.id===b.card.id){
+      a.el.classList.add("ok"); b.el.classList.add("ok");
+      flipped = [];
+      found++; $("found").textContent = found;
+      if(found===state.nPairs) win();
+    }else{
+      lock = true;
+      setTimeout(()=>{
+        a.el.classList.remove("flip");
+        b.el.classList.remove("flip");
+        flipped = []; lock = false;
+      },700);
+    }
+  }
+}
+
+function win(){
+  playing = false; clearInterval(tick);
+  $("ovTitle").textContent = state.title;
+  $("ovText").textContent = state.end + " — " + moves + " coups, " + $("timer").textContent + ".";
+  $("overlay").classList.add("show");
+}
+
+$("cfgTitle").oninput = e=>{state.title=e.target.value; applyChrome();};
+$("cfgTag").oninput = e=>{state.tag=e.target.value; applyChrome();};
+$("cfgEnd").oninput = e=>{state.end=e.target.value;};
+$("cfgPairs").onchange = e=>{state.nPairs=+e.target.value; deal();};
+$("cfgAccent").oninput = e=>{state.accent=e.target.value; $("accHex").textContent=e.target.value; applyChrome();};
+$("cfgBack").onchange = e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{
+    state.back=r.result;
+    $("backThumb").style.backgroundImage=`url(${r.result})`;
+    $("backThumb").textContent="";
+    deal(false);
+  };
+  r.readAsDataURL(f);
+};
+$("btnDeal").onclick=()=>deal(true);
+$("ovBtn").onclick=()=>deal(true);
+$("btnReset").onclick=()=>{
+  state.title="MURMURE";
+  state.tag="On casse le bruit. Vous gardez le fil.";
+  state.end="Silence. Vous avez tout apparié.";
+  state.accent="#E8C36A";
+  state.nPairs=6;
+  state.back=DEFAULT_BACK;
+  state.pairs=DEFAULT_PAIRS.map(p=>({...p}));
+  $("cfgTitle").value=state.title;
+  $("cfgTag").value=state.tag;
+  $("cfgEnd").value=state.end;
+  $("cfgAccent").value=state.accent;
+  $("accHex").textContent=state.accent;
+  $("cfgPairs").value="6";
+  $("backThumb").style.backgroundImage=`url(${DEFAULT_BACK})`;
+  $("backThumb").textContent="";
+  applyChrome(); renderPairList(); deal(true);
+};
+
+$("backThumb").style.backgroundImage=`url(${DEFAULT_BACK})`;
+$("backThumb").textContent="";
+applyChrome();
+renderPairList();
+deal(true);
+</script>
+</body>
+</html>
