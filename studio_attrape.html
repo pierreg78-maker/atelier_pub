@@ -4,6 +4,177 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Studio Attrape-tout — MURMURE</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A14;--card:#12101C;--card2:#1A1730;--border:#2E2A4A;--fg:#F3EFE6;--muted:#9A93B0;
+  --accent:#8B5CF6;--gold:#E8C36A;--ko:#F43F5E;--ok:#34D399;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:'Outfit',system-ui,sans-serif;color:var(--fg)}
+#shell{min-height:100dvh;display:grid;grid-template-columns:minmax(280px,380px) 1fr}
+@media(max-width:900px){#shell{grid-template-columns:1fr}}
+#studio{background:linear-gradient(180deg,#120e22 0%,#070A14 100%);border-right:1px solid var(--border);padding:16px 16px 28px;overflow:auto;max-height:100dvh}
+@media(max-width:900px){#studio{max-height:none;border-right:none;border-bottom:1px solid var(--border)}}
+.studioHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+.studioHead h1{font-size:18px;font-weight:900;letter-spacing:-.4px;line-height:1.2}
+.studioHead p{color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+.badge{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);border:1px solid #8A6A2A;background:#1A1408;border-radius:999px;padding:4px 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px}
+.card h2{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:10px}
+label.fld{display:block;font-size:11px;color:var(--muted);font-weight:700;margin:8px 0 4px}
+input[type=text],textarea,input[type=number]{width:100%;background:var(--card2);border:1px solid var(--border);color:var(--fg);border-radius:10px;padding:8px 10px;font-family:inherit;font-size:13px}
+textarea{min-height:56px;resize:vertical}
+.hint{font-size:10px;color:var(--muted);line-height:1.35;margin-top:6px}
+.thumb{width:100%;height:72px;border-radius:10px;border:1px dashed var(--border);background:#0A0C18 center/cover no-repeat;margin-top:6px}
+.upload input{font-size:11px;max-width:100%}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.colorLine{display:flex;align-items:center;gap:8px;margin-top:6px}
+.colorLine input[type=color]{width:42px;height:32px;border:none;background:none;padding:0;cursor:pointer}
+.actions{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.btn{border:none;border-radius:12px;padding:10px 12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;text-decoration:none;display:block;text-align:center;color:inherit}
+.btnGo{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff}
+.btnGhost{background:var(--card2);color:var(--fg);border:1px solid var(--border)}
+#playCol{display:flex;flex-direction:column;min-height:100dvh;padding:8px;align-items:center}
+#app{width:100%;max-width:520px;margin:0 auto;height:calc(100dvh - 16px);max-height:920px;display:flex;flex-direction:column;gap:8px}
+#top{position:relative;display:flex;align-items:center;justify-content:center;height:50px}
+#back{position:absolute;left:0;top:50%;transform:translateY(-50%);background:var(--card);color:var(--muted);border:1px solid var(--border);border-radius:12px;width:48px;height:48px;font-size:8px;line-height:10px;font-weight:700;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#title{font-size:20px;font-weight:900;letter-spacing:.18em;color:var(--gold)}
+#tag{text-align:center;font-size:12px;color:var(--muted)}
+#infos{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700}
+#gameWrap{flex:1;min-height:280px;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0b1020;touch-action:none}
+#cv{width:100%;height:100%;display:block;cursor:none}
+#overlay{position:absolute;inset:0;display:none;place-items:center;background:rgba(8,6,16,.78);backdrop-filter:blur(10px);text-align:center;padding:24px;z-index:4}
+#overlay.show{display:grid}
+#ovTitle{font-size:28px;font-weight:900;color:var(--gold);letter-spacing:.08em}
+#ovText{margin:10px 0 16px;color:var(--muted);font-size:14px;line-height:1.5}
+.btnPrimary{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border:none;border-radius:999px;padding:12px 26px;font-weight:800;cursor:pointer;font-family:inherit;font-size:14px}
+</style>
 </head>
-<body>see local</body>
+<body>
+<div id="shell">
+  <aside id="studio">
+    <div class="studioHead">
+      <div>
+        <h1>Studio Attrape-tout</h1>
+        <p>Ce qui tombe du ciel de la marque, on l’attrape. Ce qui tombe mal, on l’esquive. Un panier, la souris suffit.</p>
+      </div>
+      <span class="badge">MURMURE</span>
+    </div>
+    <div class="card">
+      <h2>Identité</h2>
+      <label class="fld">Titre</label>
+      <input type="text" id="cfgTitle" maxlength="24" value="MURMURE">
+      <label class="fld">Mission</label>
+      <input type="text" id="cfgTag" maxlength="80" value="Attrapez le calme. Esquivez la perceuse.">
+    </div>
+    <div class="card">
+      <h2>Ciel / fond</h2>
+      <div class="upload"><input type="file" id="cfgBg" accept="image/*"></div>
+      <div class="thumb" id="bgThumb"></div>
+      <p class="hint">Paysage, rayon, stand. Les objets tombent devant.</p>
+    </div>
+    <div class="card">
+      <h2>À attraper — cadeau</h2>
+      <label class="fld">Nom</label>
+      <input type="text" id="cfgGoodName" value="Calme">
+      <div class="upload"><input type="file" id="cfgGood" accept="image/*"></div>
+      <div class="thumb" id="goodThumb"></div>
+      <p class="hint">Packshot, logo, produit. +1 si le panier l’attrape.</p>
+    </div>
+    <div class="card">
+      <h2>À esquiver — imprévu</h2>
+      <label class="fld">Nom</label>
+      <input type="text" id="cfgBadName" value="Perceuse">
+      <div class="upload"><input type="file" id="cfgBad" accept="image/*"></div>
+      <div class="thumb" id="badThumb"></div>
+      <p class="hint">Concurrent, bruit, mauvais pack. −1 s’il tombe dans le panier.</p>
+    </div>
+    <div class="card">
+      <h2>Panier & tempo</h2>
+      <label class="fld">Couleur du panier</label>
+      <div class="colorLine">
+        <input type="color" id="cfgBasket" value="#E8C36A">
+        <span id="baskHex" style="font-size:12px;font-weight:700">#E8C36A</span>
+      </div>
+      <div class="row">
+        <div><label class="fld">Secondes</label><input type="number" id="cfgTime" min="10" max="60" value="15"></div>
+        <div><label class="fld">Largeur panier</label><input type="number" id="cfgBw" min="48" max="140" value="78"></div>
+      </div>
+      <label class="fld">Message de fin</label>
+      <textarea id="cfgEnd">Le ciel s’est tu. Vous avez gardé le fil.</textarea>
+    </div>
+    <div class="actions">
+      <button class="btn btnGo" id="btnStart">Démarrer 15 s</button>
+      <button class="btn btnGhost" id="btnReset">Revenir à MURMURE</button>
+      <a class="btn btnGhost" href="index.html">Retour accueil</a>
+    </div>
+  </aside>
+  <section id="playCol">
+    <div id="app">
+      <div id="top">
+        <a id="back" href="index.html">Retour<br>accueil</a>
+        <div id="title">MURMURE</div>
+      </div>
+      <div id="tag">Attrapez le calme. Esquivez la perceuse.</div>
+      <div id="infos">
+        <div class="pill">SCORE <span id="sc">0</span></div>
+        <div class="pill">TEMPS <span id="tm">15</span>s</div>
+        <div class="pill" id="hintPill">Cadeaux +1 · Imprévus −1</div>
+      </div>
+      <div id="gameWrap">
+        <canvas id="cv" width="480" height="640" aria-label="Attrape-tout — déplacez le panier"></canvas>
+        <div id="overlay" class="show">
+          <div>
+            <h2 id="ovTitle">MURMURE</h2>
+            <p id="ovText">Quinze secondes. Un panier. Ce qui tombe du ciel de la marque, on l’attrape.</p>
+            <button class="btnPrimary" id="ovBtn">Démarrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+const DEFAULTS={title:"MURMURE",tag:"Attrapez le calme. Esquivez la perceuse.",goodName:"Calme",badName:"Perceuse",end:"Le ciel s\u2019est tu. Vous avez gard\u00e9 le fil.",basket:"#E8C36A",time:15,bw:78,bg:"murmure/bg_boucle.jpg",good:"murmure/logo.jpg",bad:"murmure/bg_perceuse.jpg"};
+const state={...DEFAULTS};
+const imgs={bg:null,good:null,bad:null};
+function $(id){return document.getElementById(id)}
+function loadImg(src,key){if(!src){imgs[key]=null;return;}const im=new Image();im.onload=()=>{imgs[key]=im;};im.onerror=()=>{imgs[key]=null;};im.src=src;}
+function applyChrome(){$("title").textContent=state.title;$("tag").textContent=state.tag;$("tm").textContent=state.time;$("btnStart").textContent="Démarrer "+state.time+" s";$("baskHex").textContent=state.basket;$("bgThumb").style.backgroundImage=state.bg?`url(${state.bg})`:"";$("goodThumb").style.backgroundImage=state.good?`url(${state.good})`:"";$("badThumb").style.backgroundImage=state.bad?`url(${state.bad})`:"";}
+loadImg(state.bg,"bg");loadImg(state.good,"good");loadImg(state.bad,"bad");applyChrome();
+const cv=$("cv"),ctx=cv.getContext("2d");
+const G={mode:"idle",score:0,bx:240,items:[],floats:[],t0:0,spawnAt:0,keys:{l:0,r:0},W:480,H:640,last:0};
+function resize(){const wrap=$("gameWrap");const r=wrap.getBoundingClientRect();const dpr=Math.min(2,devicePixelRatio||1);G.W=Math.max(280,Math.floor(r.width));G.H=Math.max(280,Math.floor(r.height));cv.width=G.W*dpr;cv.height=G.H*dpr;cv.style.width=G.W+"px";cv.style.height=G.H+"px";ctx.setTransform(dpr,0,0,dpr,0,0);G.bx=Math.max(state.bw/2+6,Math.min(G.W-state.bw/2-6,G.bx||G.W/2));}
+addEventListener("resize",resize);resize();
+function setBasketFromClientX(clientX){const r=cv.getBoundingClientRect();G.bx=Math.max(state.bw/2+6,Math.min(G.W-state.bw/2-6,(clientX-r.left)*G.W/r.width));}
+cv.addEventListener("pointermove",e=>{setBasketFromClientX(e.clientX);});
+cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);setBasketFromClientX(e.clientX);});
+addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){G.keys.l=1;e.preventDefault();}if(e.key==="ArrowRight"){G.keys.r=1;e.preventDefault();}});
+addEventListener("keyup",e=>{if(e.key==="ArrowLeft")G.keys.l=0;if(e.key==="ArrowRight")G.keys.r=0;});
+function start(){G.mode="play";G.score=0;G.items=[];G.floats=[];G.t0=performance.now();G.spawnAt=G.t0+280;$("sc").textContent="0";$("tm").textContent=state.time;$("overlay").classList.remove("show");$("hintPill").textContent=state.goodName+" +1 \u00b7 "+state.badName+" \u22121";}
+function finish(){G.mode="over";$("ovTitle").textContent=state.title;$("ovText").textContent=G.score+" pts \u2014 "+state.end;$("ovBtn").textContent="Rejouer";$("overlay").classList.add("show");}
+function spawn(now,elapsed){const good=Math.random()<0.72;const size=good?36+Math.random()*10:32+Math.random()*8;G.items.push({x:24+Math.random()*(G.W-48),y:-size,vy:70+Math.random()*70+elapsed*5.5,r:size/2,good,rot:(Math.random()-.5)*0.8,spin:(Math.random()-.5)*1.6,done:false});G.spawnAt=now+300+Math.random()*280-Math.min(120,elapsed*8);}
+function update(now,dt){const speed=340;if(G.keys.l)G.bx=Math.max(state.bw/2+6,G.bx-speed*dt);if(G.keys.r)G.bx=Math.min(G.W-state.bw/2-6,G.bx+speed*dt);if(G.mode!=="play")return;const elapsed=(now-G.t0)/1000;const rem=Math.max(0,state.time-elapsed);$("tm").textContent=Math.ceil(rem);$("sc").textContent=G.score;if(elapsed>=state.time){finish();return;}if(now>=G.spawnAt)spawn(now,elapsed);const by=G.H-28;for(const it of G.items){it.y+=it.vy*dt;it.rot+=it.spin*dt;if(!it.done&&it.y+it.r>=by-6&&it.y-it.r<=by+16&&Math.abs(it.x-G.bx)<=state.bw/2+it.r*0.35){it.done=true;if(it.good){G.score++;G.floats.push({x:it.x,y:by-18,txt:"+1",col:"#34D399",life:1});}else{G.score=Math.max(0,G.score-1);G.floats.push({x:it.x,y:by-18,txt:"\u22121",col:"#F43F5E",life:1});}}}G.items=G.items.filter(it=>!it.done&&it.y<G.H+40);for(const f of G.floats){f.y-=36*dt;f.life-=dt*1.4;}G.floats=G.floats.filter(f=>f.life>0);}
+function roundRect(x,y,w,h,r){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h);}
+function drawImageCover(img,x,y,s){const side=Math.min(img.width,img.height);const sx=(img.width-side)/2,sy=(img.height-side)/2;ctx.drawImage(img,sx,sy,side,side,x,y,s,s);}
+function drawItem(it){ctx.save();ctx.translate(it.x,it.y);ctx.rotate(it.rot);const s=it.r*2;if(it.good){ctx.fillStyle=state.basket;roundRect(-it.r-2,-it.r-2,s+4,s+4,10);ctx.fill();if(imgs.good){ctx.save();roundRect(-it.r,-it.r,s,s,8);ctx.clip();drawImageCover(imgs.good,-it.r,-it.r,s);ctx.restore();}else{ctx.fillStyle="#F3EFE6";roundRect(-it.r,-it.r,s,s,8);ctx.fill();ctx.fillStyle=state.basket;ctx.fillRect(-3,-it.r,6,s);ctx.fillRect(-it.r,-3,s,6);}}else{ctx.beginPath();ctx.arc(0,0,it.r+2,0,Math.PI*2);ctx.fillStyle="#1a0c14";ctx.fill();if(imgs.bad){ctx.save();ctx.beginPath();ctx.arc(0,0,it.r,0,Math.PI*2);ctx.clip();drawImageCover(imgs.bad,-it.r,-it.r,s);ctx.restore();ctx.strokeStyle="rgba(244,63,94,.85)";ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,0,it.r,0,Math.PI*2);ctx.stroke();}else{ctx.fillStyle="#F43F5E";ctx.beginPath();ctx.arc(0,0,it.r,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#F3EFE6";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(-8,-8);ctx.lineTo(8,8);ctx.moveTo(8,-8);ctx.lineTo(-8,8);ctx.stroke();}}ctx.restore();}
+function drawBasket(){const by=G.H-28;const x=G.bx-state.bw/2;ctx.fillStyle="rgba(0,0,0,.28)";roundRect(x+4,by+8,state.bw,10,4);ctx.fill();ctx.fillStyle=state.basket;roundRect(x,by-8,state.bw,10,4);ctx.fill();ctx.fillStyle="#1a1408";roundRect(x+4,by,state.bw-8,16,4);ctx.fill();ctx.strokeStyle=state.basket;ctx.lineWidth=2;roundRect(x+4,by,state.bw-8,16,4);ctx.stroke();if(imgs.good&&state.bw>70){ctx.save();ctx.beginPath();ctx.arc(G.bx,by+8,7,0,Math.PI*2);ctx.clip();drawImageCover(imgs.good,G.bx-7,by+1,14);ctx.restore();}}
+function draw(){ctx.clearRect(0,0,G.W,G.H);if(imgs.bg){const img=imgs.bg;const ir=img.width/img.height,cr=G.W/G.H;let dw,dh,dx,dy;if(ir>cr){dh=G.H;dw=G.H*ir;dx=(G.W-dw)/2;dy=0;}else{dw=G.W;dh=G.W/ir;dx=0;dy=(G.H-dh)/2;}ctx.drawImage(img,dx,dy,dw,dh);ctx.fillStyle="rgba(7,10,20,.38)";ctx.fillRect(0,0,G.W,G.H);}else{const g=ctx.createLinearGradient(0,0,0,G.H);g.addColorStop(0,"#1a1440");g.addColorStop(1,"#070A14");ctx.fillStyle=g;ctx.fillRect(0,0,G.W,G.H);}for(const it of G.items)drawItem(it);drawBasket();ctx.textAlign="center";ctx.font="800 16px Outfit, sans-serif";for(const f of G.floats){ctx.globalAlpha=Math.max(0,f.life);ctx.fillStyle=f.col;ctx.fillText(f.txt,f.x,f.y);}ctx.globalAlpha=1;if(G.mode==="idle"){ctx.fillStyle="rgba(7,10,20,.35)";ctx.fillRect(0,0,G.W,G.H);}}
+function loop(ts){const dt=Math.min(.033,(ts-G.last)/1000||.016);G.last=ts;update(ts,dt);draw();requestAnimationFrame(loop);}requestAnimationFrame(loop);
+function readFile(input,key,imgKey){input.onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state[key]=r.result;loadImg(r.result,imgKey);applyChrome();};r.readAsDataURL(f);};}
+$("cfgTitle").oninput=e=>{state.title=e.target.value;applyChrome();};
+$("cfgTag").oninput=e=>{state.tag=e.target.value;applyChrome();};
+$("cfgGoodName").oninput=e=>{state.goodName=e.target.value;$("hintPill").textContent=state.goodName+" +1 \u00b7 "+state.badName+" \u22121";};
+$("cfgBadName").oninput=e=>{state.badName=e.target.value;$("hintPill").textContent=state.goodName+" +1 \u00b7 "+state.badName+" \u22121";};
+$("cfgEnd").oninput=e=>{state.end=e.target.value;};
+$("cfgBasket").oninput=e=>{state.basket=e.target.value;applyChrome();};
+$("cfgTime").oninput=e=>{state.time=Math.max(10,Math.min(60,+e.target.value||15));applyChrome();};
+$("cfgBw").oninput=e=>{state.bw=Math.max(48,Math.min(140,+e.target.value||78));};
+readFile($("cfgBg"),"bg","bg");readFile($("cfgGood"),"good","good");readFile($("cfgBad"),"bad","bad");
+$("btnStart").onclick=start;$("ovBtn").onclick=start;
+$("btnReset").onclick=()=>{Object.assign(state,DEFAULTS);$("cfgTitle").value=state.title;$("cfgTag").value=state.tag;$("cfgGoodName").value=state.goodName;$("cfgBadName").value=state.badName;$("cfgEnd").value=state.end;$("cfgBasket").value=state.basket;$("cfgTime").value=state.time;$("cfgBw").value=state.bw;loadImg(state.bg,"bg");loadImg(state.good,"good");loadImg(state.bad,"bad");applyChrome();G.mode="idle";G.items=[];G.floats=[];G.score=0;$("sc").textContent="0";$("ovTitle").textContent=state.title;$("ovText").textContent="Quinze secondes. Un panier. Ce qui tombe du ciel de la marque, on l\u2019attrape.";$("ovBtn").textContent="Démarrer";$("overlay").classList.add("show");};
+</script>
+</body>
 </html>
