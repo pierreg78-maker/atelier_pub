@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>L'Atelier Pub — Mini-jeux personnalisables</title>
-  <link rel="icon" type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-4 32 32)'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%23E8481F' stroke='%231C1712' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23F1EBDD' stroke='%231C1712' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%231C1712'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%231C1712'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%231C1712'/%3E%3C/g%3E%3C/svg%3E">
-<link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-4 32 32)'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%231C1712' stroke='%23F1EBDD' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23E8481F' stroke='%23F1EBDD' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%23F1EBDD'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%23F1EBDD'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%23F1EBDD'/%3E%3C/g%3E%3C/svg%3E">
-<meta name="description" content="Six studios, six jeux d'arcade dédiés à votre marque. Testez les démos directement sur la page.">
+<title>L'Atelier Pub — Mini-jeux sur mesure pour vos marques</title>
+<meta name="description" content="Six studios, six jeux cousus main pour votre marque. Testez les démos directement sur la page.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-4 32 32)'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%23E8481F' stroke='%231C1712' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23F1EBDD' stroke='%231C1712' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%231C1712'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%231C1712'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%231C1712'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-4 32 32)'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%231C1712' stroke='%23F1EBDD' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23E8481F' stroke='%23F1EBDD' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%23F1EBDD'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%23F1EBDD'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%23F1EBDD'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -17,8 +15,8 @@
 :root{
   --paper:#F1EBDD; --paper-2:#E7DEC9; --ink:#1C1712; --ink-2:#5B5142;
   --accent:#E8481F;
-  --c-jackpot:#157A56; --c-memo:#2E4FD7; --c-briques:#D97810;
-  --c-quiz:#BC8A00; --c-taupe:#8A5A32; --c-roue:#C93A6C;
+  --c-memo:#157A56; --c-puzzle:#D97810; --c-mots:#2E4FD7;
+  --c-murmure:#C93A6C; --c-attrape:#8A5A32; --c-quiz:#BC8A00;
   --disp:"Bricolage Grotesque", sans-serif;
   --mono:"Space Mono", monospace;
 }
@@ -29,7 +27,6 @@ body{
   font-family:var(--disp); font-size:16px; line-height:1.55;
   overflow-x:hidden;
 }
-/* grain papier, effet sérigraphie */
 body::after{
   content:""; position:fixed; inset:0; z-index:200; pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
@@ -52,7 +49,6 @@ mark{background:var(--accent);color:var(--paper);padding:0 .12em;box-decoration-
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='7' viewBox='0 0 40 7'%3E%3Cpath d='M0 5 Q5 0 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23E8481F' stroke-width='2.4'/%3E%3C/svg%3E") repeat-x bottom;
 }
 
-/* boutons façon tampon */
 .btn{
   display:inline-flex;align-items:center;gap:9px;
   font-family:var(--disp);font-weight:700;font-size:15px;
@@ -185,18 +181,18 @@ body.menu-open .mobile-menu{transform:translateY(0)}
 .studio-card.pulse{animation:cardPulse 1.1s}
 @keyframes cardPulse{0%,100%{outline:0 solid transparent}35%{outline:5px solid var(--accent);outline-offset:3px}}
 #card-memo{--sc:var(--c-memo);--rot:-.7deg;--ty:0px}
-#card-briques{--sc:var(--c-briques);--rot:.5deg;--ty:26px}
-#card-jackpot{--sc:var(--c-jackpot);--rot:.45deg;--ty:4px}
-#card-quiz{--sc:var(--c-quiz);--rot:.8deg;--ty:-14px}
-#card-taupe{--sc:var(--c-taupe);--rot:-.5deg;--ty:16px}
-#card-roue{--sc:var(--c-roue);--rot:-.6deg;--ty:-8px}
+#card-puzzle{--sc:var(--c-puzzle);--rot:.5deg;--ty:26px}
+#card-mots{--sc:var(--c-mots);--rot:.45deg;--ty:4px}
+#card-murmure{--sc:var(--c-murmure);--rot:.8deg;--ty:-14px}
+#card-attrape{--sc:var(--c-attrape);--rot:-.5deg;--ty:16px}
+#card-quiz{--sc:var(--c-quiz);--rot:-.6deg;--ty:-8px}
 @media(min-width:901px){
   #card-memo{grid-column:1/7}
-  #card-briques{grid-column:7/13}
-  #card-jackpot{grid-column:1/8}
-  #card-quiz{grid-column:8/13}
-  #card-taupe{grid-column:1/7}
-  #card-roue{grid-column:7/13}
+  #card-puzzle{grid-column:7/13}
+  #card-mots{grid-column:1/8}
+  #card-murmure{grid-column:8/13}
+  #card-attrape{grid-column:1/7}
+  #card-quiz{grid-column:7/13}
 }
 .card-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px 0}
 .card-num{
@@ -230,6 +226,7 @@ body.menu-open .mobile-menu{transform:translateY(0)}
 .mini-btn:hover svg{stroke:var(--ink)}
 .mini-btn.txt{width:auto;padding:0 10px;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--paper)}
 .mini-btn.txt:hover{color:var(--ink)}
+
 .screw{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--ink);z-index:3}
 .screw::after{content:"";position:absolute;left:1.5px;top:3.5px;width:6px;height:1.6px;background:var(--paper);transform:rotate(45deg)}
 .screw.tl{top:6px;left:6px}.screw.tr{top:6px;right:6px}.screw.bl{bottom:6px;left:6px}.screw.br{bottom:6px;right:6px}
@@ -239,9 +236,11 @@ body.menu-open .mobile-menu{transform:translateY(0)}
   padding:14px 18px 18px;border-top:2px solid var(--ink);margin-top:16px;
 }
 .card-note{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.card-foot .btn-line{box-shadow:3px 3px 0 var(--sc)}
+.card-foot .btn-line:hover{background:var(--sc);border-color:var(--sc);color:var(--paper);box-shadow:5px 5px 0 var(--ink)}
 
 /* --- Memory --- */
-.gf-body.tinted{background:var(--paper);background:color-mix(in srgb,var(--sc) 7%,var(--paper))}
+.gf-body.tinted{background:color-mix(in srgb,var(--sc) 7%,var(--paper))}
 .mem-board{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:16px}
 .mem-card{aspect-ratio:1;perspective:500px;cursor:pointer;border:none;background:none}
 .mem-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .4s cubic-bezier(.4,1.4,.5,1)}
@@ -258,67 +257,54 @@ body.menu-open .mobile-menu{transform:translateY(0)}
 .mem-card.matched{animation:pop .35s;cursor:default}
 @keyframes pop{45%{transform:scale(1.12)}}
 
-/* --- Casse-briques --- */
-.bq-canvas{display:block;width:100%;aspect-ratio:340/224;height:auto;touch-action:none;cursor:crosshair;background:#EDE4CF}
+/* --- Puzzle (taquin) --- */
+.pz-body{padding:18px;display:flex;justify-content:center}
+.pz-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:5px;
+  background:var(--ink);border-radius:10px;width:min(100%,250px);
+  transition:gap .35s,padding .35s;
+}
+.pz-tile{
+  aspect-ratio:1;border:none;border-radius:6px;cursor:pointer;padding:0;
+  background-size:300% 300%;background-repeat:no-repeat;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%23E8481F' stroke='%231C1712' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23F1EBDD' stroke='%231C1712' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%231C1712'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%231C1712'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%231C1712'/%3E%3C/svg%3E");
+  box-shadow:inset 0 0 0 1.5px rgba(28,23,18,.4);
+  transition:transform .12s;
+}
+.pz-tile:hover{transform:scale(.95)}
+.pz-tile:active{transform:scale(.88)}
+.pz-empty{aspect-ratio:1;border-radius:6px;border:1.5px dashed rgba(241,235,221,.45)}
+.pz-grid.done{gap:0;padding:0}
+.pz-grid.done .pz-tile{border-radius:0;box-shadow:none;transform:none}
 
-/* --- Machine à sous --- */
-.slot-body{padding:18px 16px 14px}
-.slot-window{display:flex;gap:10px;justify-content:center}
-.reel{
-  flex:1;max-width:110px;height:54px;overflow:hidden;border:2px solid var(--ink);
-  border-radius:8px;background:var(--paper);
+/* --- Mots mêlés --- */
+.mm-wrap{display:flex;flex-direction:column;gap:12px;padding:16px}
+.mm-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;width:min(100%,300px);margin:0 auto}
+.mm-grid button{
+  aspect-ratio:1;padding:0;border:1.5px solid var(--ink);border-radius:5px;
+  background:var(--paper);font-family:var(--mono);font-weight:700;
+  font-size:clamp(9px,1.9vw,12px);color:var(--ink);cursor:pointer;
 }
-.reel-strip{display:flex;flex-direction:column}
-.reel-strip div{
-  height:54px;line-height:50px;text-align:center;flex:none;
-  font-weight:800;font-size:26px;color:var(--sc);
-}
-.reel-strip.spinning{filter:blur(1.3px)}
-.slot-msg{font-family:var(--mono);font-size:11px;text-align:center;margin:12px 0;min-height:16px;letter-spacing:.04em}
-.slot-msg.win{color:var(--sc);font-weight:700}
-.slot-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1.5px dashed var(--ink-2);padding-top:12px}
-.slot-credits{font-family:var(--mono);font-size:11.5px;font-weight:700}
-.slot-bar .btn-line{box-shadow:3px 3px 0 var(--sc)}
-.slot-bar .btn-line:hover{background:var(--sc);border-color:var(--sc);color:var(--paper);box-shadow:5px 5px 0 var(--ink)}
-.cf{position:absolute;pointer-events:none;z-index:5}
+.mm-grid button:hover{background:var(--paper-2)}
+.mm-grid button.sel,.mm-grid button.found{background:var(--sc);border-color:var(--sc);color:var(--paper)}
+.mm-grid button.no{animation:mmNo .3s}
+@keyframes mmNo{25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.mm-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.mm-chip{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.09em;border:1.5px solid var(--ink);border-radius:6px;padding:3px 9px;background:var(--paper)}
+.mm-chip.hit{background:var(--ink);color:var(--paper);text-decoration:line-through}
 
-/* --- Tape-taupe --- */
-.mole-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px}
-.mole-hole{
-  position:relative;height:74px;border-radius:50% 50% 8px 8px / 62% 62% 8px 8px;
-  background:#2C2015;border:2px solid var(--ink);overflow:hidden;cursor:pointer;
-}
-.mole{
-  position:absolute;left:50%;bottom:-4px;width:58px;height:58px;transform:translate(-50%,105%);
-  transition:transform .18s cubic-bezier(.3,1.4,.5,1);
-}
-.mole-hole.up .mole{transform:translate(-50%,14%)}
-.mole.bonk{transition:transform .1s;transform:translate(-50%,60%) scale(.82)}
-.mole svg{width:100%;height:100%}
-.pop-score{
-  position:absolute;top:8px;left:50%;transform:translateX(-50%);
-  font-family:var(--mono);font-weight:700;font-size:13px;color:var(--paper);
-  background:var(--ink);padding:1px 7px;border-radius:5px;pointer-events:none;z-index:4;
-}
+/* --- Murmure --- */
+.murm-ears{display:flex;align-items:center;gap:5px;color:var(--sc);margin:10px 0 2px}
+.murm-ears svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.murm-ears svg:nth-child(2){opacity:.75}
+.murm-ears svg:nth-child(3){opacity:.55}
+.murm-ears svg:nth-child(4){opacity:.4}
+.murm-ears svg:nth-child(5){opacity:.28}
+.murm-ears span{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);margin-left:5px}
+.murm-line{font-style:italic;font-weight:500;font-size:15px;line-height:1.4;margin:6px 0 13px;min-height:44px;color:var(--ink)}
 
-/* --- Roue --- */
-.roue-body{position:relative;padding:18px 0 14px;display:flex;justify-content:center}
-.roue-stage{position:relative;width:min(78%,242px)}
-.roue-stage canvas{width:100%;aspect-ratio:1;height:auto}
-.roue-pointer{
-  position:absolute;top:-9px;left:50%;transform:translateX(-50%);z-index:4;
-  width:0;height:0;border:11px solid transparent;border-top:18px solid var(--accent);
-  filter:drop-shadow(1px 1px 0 var(--ink));transition:transform .07s;transform-origin:top center;
-}
-.roue-pointer.shift{transform:translateX(-50%) rotate(9deg)}
-.roue-go{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
-  width:62px;height:62px;border-radius:50%;background:var(--ink);color:var(--paper);
-  border:2.5px solid var(--ink);box-shadow:0 0 0 3px var(--paper);
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;
-}
-.roue-go:disabled{opacity:.55;cursor:wait}
-.roue-go:not(:disabled):hover{background:var(--accent)}
+/* --- Attrape --- */
+.game-canvas{display:block;width:100%;aspect-ratio:340/224;height:auto;touch-action:none;cursor:crosshair;background:#EDE4CF}
 
 /* --- Quiz --- */
 .quiz-body{padding:16px}
@@ -382,48 +368,6 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 .foot-in nav{display:flex;gap:20px}
 .foot-in nav a:hover{color:var(--accent)}
 
-/* ============ FICHE STUDIO (panneau) ============ */
-.overlay{position:fixed;inset:0;background:rgba(28,23,18,.5);z-index:80;opacity:0;pointer-events:none;transition:opacity .3s}
-.overlay.open{opacity:1;pointer-events:auto}
-.panel{
-  position:fixed;top:0;right:0;height:100%;width:min(500px,100%);z-index:85;
-  background:var(--paper);border-left:2px solid var(--ink);
-  transform:translateX(103%);transition:transform .45s cubic-bezier(.7,0,.2,1);
-  display:flex;flex-direction:column;
-}
-.panel.open{transform:translateX(0)}
-.panel-head{background:var(--sc);color:var(--paper);padding:26px 26px 22px;border-bottom:2px solid var(--ink);position:relative;flex:none}
-.panel-head .eyebrow{color:rgba(241,235,221,.7)}
-.panel-head h3{font-size:clamp(1.7rem,3vw,2.3rem);margin-top:8px}
-.panel-head .game-tag{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;border:1.5px solid var(--paper);border-radius:6px;padding:3px 9px}
-.panel-close{
-  position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:8px;
-  border:2px solid var(--paper);background:transparent;display:grid;place-items:center;
-}
-.panel-close svg{width:15px;height:15px;stroke:var(--paper);stroke-width:2.4;stroke-linecap:round}
-.panel-close:hover{background:var(--paper)}
-.panel-close:hover svg{stroke:var(--ink)}
-.panel-body{overflow-y:auto;padding:26px;flex:1}
-.panel-body>p{font-size:.98rem}
-.panel-sec{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin:26px 0 12px;display:flex;align-items:center;gap:10px}
-.panel-sec::after{content:"";flex:1;border-top:1.5px dashed var(--ink-2)}
-.panel-body ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.panel-body ul li{display:flex;gap:11px;font-size:.93rem}
-.panel-body ul li svg{width:13px;height:13px;flex:none;margin-top:5px;stroke:var(--sc);stroke-width:3;fill:none;stroke-linecap:round}
-.panel-ideal{font-family:var(--mono);font-size:12px;line-height:1.8}
-.panel-case{border-left:3px solid var(--sc);background:var(--paper);background:color-mix(in srgb,var(--sc) 7%,var(--paper));padding:14px 16px;font-size:.92rem;font-style:italic;border-radius:0 8px 8px 0}
-.panel-case b{font-style:normal;display:block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
-.meta-row{display:flex;align-items:baseline;gap:10px;font-family:var(--mono);font-size:12px;margin-top:10px}
-.meta-row .dots{flex:1;border-bottom:2px dotted var(--ink-2);transform:translateY(-3px)}
-.meta-row b{font-size:13px}
-.panel-actions{margin-top:30px;display:flex;flex-direction:column;gap:14px}
-.panel-url{display:flex;align-items:center;gap:10px;border:1.5px dashed var(--ink-2);border-radius:8px;padding:10px 14px}
-.panel-url code{font-family:var(--mono);font-size:12.5px;flex:1;overflow:hidden;text-overflow:ellipsis}
-.copy-btn{width:30px;height:30px;border:1.5px solid var(--ink);border-radius:6px;background:var(--paper);display:grid;place-items:center;flex:none}
-.copy-btn svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.copy-btn:hover{background:var(--ink)}
-.copy-btn:hover svg{stroke:var(--paper)}
-
 /* ============ TOASTS ============ */
 .toasts{position:fixed;bottom:20px;left:20px;z-index:150;display:flex;flex-direction:column;gap:10px;max-width:min(360px,calc(100vw - 40px))}
 .toast{
@@ -457,9 +401,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 @media(max-width:620px){
   .steps{grid-template-columns:1fr}
   .mem-board{gap:7px;padding:12px}
-  .mole-grid{gap:9px}
-  .mole-hole{height:62px}
-  .mole{width:48px;height:48px}
+  .mm-wrap{padding:12px}
   .form-row{grid-template-columns:1fr}
   .studio-card{--ty:0px;--rot:0deg}
 }
@@ -513,11 +455,11 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <p class="swatch-label mono">La palette des six studios — cliquez pour sauter à un atelier</p>
         <div class="swatch">
           <button class="sw" style="--sc:var(--c-memo)"     data-name="N°01 — Mémo"     data-target="card-memo"     aria-label="Aller au Studio Mémo"></button>
-          <button class="sw" style="--sc:var(--c-briques)"  data-name="N°02 — Briques"  data-target="card-briques"  aria-label="Aller au Studio Briques"></button>
-          <button class="sw" style="--sc:var(--c-jackpot)"  data-name="N°03 — Jackpot"  data-target="card-jackpot"  aria-label="Aller au Studio Jackpot"></button>
-          <button class="sw" style="--sc:var(--c-quiz)"     data-name="N°04 — Quiz"     data-target="card-quiz"     aria-label="Aller au Studio Quiz"></button>
-          <button class="sw" style="--sc:var(--c-taupe)"    data-name="N°05 — Taupe"    data-target="card-taupe"    aria-label="Aller au Studio Taupe"></button>
-          <button class="sw" style="--sc:var(--c-roue)"     data-name="N°06 — Roue"     data-target="card-roue"     aria-label="Aller au Studio Roue"></button>
+          <button class="sw" style="--sc:var(--c-puzzle)"   data-name="N°02 — Puzzle"   data-target="card-puzzle"   aria-label="Aller au Studio Puzzle"></button>
+          <button class="sw" style="--sc:var(--c-mots)"     data-name="N°03 — Mots"     data-target="card-mots"     aria-label="Aller au Studio Mots"></button>
+          <button class="sw" style="--sc:var(--c-murmure)"  data-name="N°04 — Murmure"  data-target="card-murmure"  aria-label="Aller au Studio Murmure"></button>
+          <button class="sw" style="--sc:var(--c-attrape)"  data-name="N°05 — Attrape"  data-target="card-attrape"  aria-label="Aller au Studio Attrape"></button>
+          <button class="sw" style="--sc:var(--c-quiz)"     data-name="N°06 — Quiz"     data-target="card-quiz"     aria-label="Aller au Studio Quiz"></button>
         </div>
       </div>
     </div>
@@ -552,8 +494,8 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 <!-- marquee -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Mémo<em>✳</em>Casse-briques<em>✳</em>Tape-taupe<em>✳</em>Machine à sous<em>✳</em>Quiz<em>✳</em>Roue de la fortune<em>✳</em>Tous jouables ici-même<em>✳</em></span>
-    <span>Mémo<em>✳</em>Casse-briques<em>✳</em>Tape-taupe<em>✳</em>Machine à sous<em>✳</em>Quiz<em>✳</em>Roue de la fortune<em>✳</em>Tous jouables ici-même<em>✳</em></span>
+    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Murmure<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Tous jouables ici-même<em>✳</em></span>
+    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Murmure<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Tous jouables ici-même<em>✳</em></span>
   </div>
 </div>
 
@@ -563,7 +505,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
     <div class="sec-head reveal">
       <p class="eyebrow">— Les six studios</p>
       <h2>Chaque jeu a <span class="squiggle">son atelier</span>.</h2>
-      <p>Chaque studio ne fabrique qu'un seul jeu — et le connaît par cœur. Testez la démo directement dans la carte, puis poussez la porte.</p>
+      <p>Chaque studio ne fabrique qu'un seul jeu — et le connaît par cœur. Testez la démo directement dans la carte, puis poussez la porte du studio.</p>
       <span class="mono-hint mono">↓ 6 cartes, 6 démos, 0 video de gameplay : c'est du vrai.</span>
     </div>
 
@@ -584,60 +526,107 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         </div>
         <div class="card-foot">
           <span class="card-note">Temps moyen : 40 secondes de marque</span>
-          <button class="btn btn-line studio-link" data-studio="memo">Visiter le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <a class="btn btn-line" href="studio_memory.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
 
-      <!-- N°02 BRIQUES -->
-      <article class="studio-card reveal" id="card-briques">
-        <div class="card-head"><span class="card-num">N°02</span><span class="card-tag">Studio spécialisé — Casse-briques</span></div>
-        <h3>Le Casse-briques</h3>
-        <p class="card-desc">Un plateau, une balle, des briques aux couleurs de la marque qui tombent une à une. La dernière cache toujours l'offre — et tout le monde veut la casser.</p>
+      <!-- N°02 PUZZLE -->
+      <article class="studio-card reveal" id="card-puzzle">
+        <div class="card-head"><span class="card-num">N°02</span><span class="card-tag">Studio spécialisé — Puzzle</span></div>
+        <h3>Le Puzzle</h3>
+        <p class="card-desc">Un visuel de campagne découpé en pièces qu'on fait glisser jusqu'à l'image juste. On a découpé la manette de l'atelier pour la démonstration — remettez-la d'aplomb.</p>
         <div class="game-frame">
           <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-          <div class="gf-bar"><b>Plateau de démo — Briques</b>
-            <span class="gf-right"><span class="gf-status" id="bqStatus">Cliquez pour lancer</span></span>
+          <div class="gf-bar"><b>Plateau de démo — Puzzle</b>
+            <span class="gf-right"><span class="gf-status" id="pzStatus">0 coup — l'image attend</span>
+            <button class="mini-btn" id="pzReset" aria-label="Remélanger la démo Puzzle"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 3.5V8h-4.5"/></svg></button></span>
           </div>
-          <canvas class="bq-canvas" id="cvBriques" width="340" height="224" aria-label="Démo de casse-briques — bougez la souris pour jouer"></canvas>
+          <div class="gf-body tinted pz-body"><div class="pz-grid" id="pzGrid"></div></div>
         </div>
         <div class="card-foot">
-          <span class="card-note">3 vies. Comme dans la vraie vie.</span>
-          <button class="btn btn-line studio-link" data-studio="briques">Visiter le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <span class="card-note">9 pièces, un mélange toujours solvable</span>
+          <a class="btn btn-line" href="studio_puzzle.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
 
-      <!-- N°03 JACKPOT -->
-      <article class="studio-card reveal" id="card-jackpot">
-        <div class="card-head"><span class="card-num">N°03</span><span class="card-tag">Studio spécialisé — Machine à sous</span></div>
-        <h3>La Machine à sous</h3>
-        <p class="card-desc">Trois rouleaux, des symboles dessinés pour votre univers, et la tension des trois images qui s'alignent. L'économie de crédits se cale sur vos lots.</p>
+      <!-- N°03 MOTS -->
+      <article class="studio-card reveal" id="card-mots">
+        <div class="card-head"><span class="card-num">N°03</span><span class="card-tag">Studio spécialisé — Mots mêlés</span></div>
+        <h3>Les Mots mêlés</h3>
+        <p class="card-desc">Vos mots-clés perdus dans une grille, à repêcher à l'œil nu. Choisissez une lettre de départ, puis la dernière : le mot se surligne tout seul. La grille se régénère à l'infini.</p>
         <div class="game-frame">
           <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-          <div class="gf-bar"><b>Plateau de démo — Jackpot</b>
-            <span class="gf-right"><span class="gf-status" id="jkStatus">3 symboles à aligner</span></span>
+          <div class="gf-bar"><b>Plateau de démo — Mots mêlés</b>
+            <span class="gf-right"><span class="gf-status" id="mmStatus">0/4 mots trouvés</span>
+            <button class="mini-btn" id="mmReset" aria-label="Régénérer la grille"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 3.5V8h-4.5"/></svg></button></span>
           </div>
-          <div class="slot-body">
-            <div class="slot-window">
-              <div class="reel"><div class="reel-strip"></div></div>
-              <div class="reel"><div class="reel-strip"></div></div>
-              <div class="reel"><div class="reel-strip"></div></div>
-            </div>
-            <p class="slot-msg" id="jkMsg">1 crédit = 1 tirage. La maison est généreuse.</p>
-            <div class="slot-bar">
-              <span class="slot-credits">CRÉDITS : <b id="jkCredits">10</b></span>
-              <button class="btn btn-line" id="jkSpin">Lancer — 1 crédit</button>
+          <div class="gf-body tinted">
+            <div class="mm-wrap">
+              <div class="mm-grid" id="mmGrid"></div>
+              <div class="mm-chips" id="mmList"></div>
             </div>
           </div>
         </div>
         <div class="card-foot">
-          <span class="card-note">Trois « 7 » et la tournée est pour vous</span>
-          <button class="btn btn-line studio-link" data-studio="jackpot">Visiter le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <span class="card-note">4 mots cachés. Aucun à l'envers, promis</span>
+          <a class="btn btn-line" href="studio_mots.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
 
-      <!-- N°04 QUIZ -->
+      <!-- N°04 MURMURE -->
+      <article class="studio-card reveal" id="card-murmure">
+        <div class="card-head"><span class="card-num">N°04</span><span class="card-tag">Studio spécialisé — Murmure</span></div>
+        <h3>Le Murmure</h3>
+        <p class="card-desc">La phrase traverse cinq oreilles et ressort méconnaissable. Retrouvez ce que l'atelier a vraiment dit — le téléphone arabe, en solo et sans rancune.</p>
+        <div class="game-frame">
+          <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
+          <div class="gf-bar"><b>Plateau de démo — Murmure</b>
+            <span class="gf-right"><span class="gf-status" id="mrStatus">Score 0/3</span></span>
+          </div>
+          <div class="quiz-body">
+            <p class="quiz-qnum" id="mrNum">Oreille 1/3</p>
+            <div class="murm-ears" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 9.5a5 5 0 0 1-10 0c0 2 .9 3.1 1.9 4.1s2.1 1.7 2.1 4.4a2.5 2.5 0 0 0 5 0"/><path d="M9.6 9.5a2.4 2.4 0 0 1 4.8 0c0 1.4-.9 1.9-1.4 2.9"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M17 9.5a5 5 0 0 1-10 0c0 2 .9 3.1 1.9 4.1s2.1 1.7 2.1 4.4a2.5 2.5 0 0 0 5 0"/><path d="M9.6 9.5a2.4 2.4 0 0 1 4.8 0c0 1.4-.9 1.9-1.4 2.9"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M17 9.5a5 5 0 0 1-10 0c0 2 .9 3.1 1.9 4.1s2.1 1.7 2.1 4.4a2.5 2.5 0 0 0 5 0"/><path d="M9.6 9.5a2.4 2.4 0 0 1 4.8 0c0 1.4-.9 1.9-1.4 2.9"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M17 9.5a5 5 0 0 1-10 0c0 2 .9 3.1 1.9 4.1s2.1 1.7 2.1 4.4a2.5 2.5 0 0 0 5 0"/><path d="M9.6 9.5a2.4 2.4 0 0 1 4.8 0c0 1.4-.9 1.9-1.4 2.9"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M17 9.5a5 5 0 0 1-10 0c0 2 .9 3.1 1.9 4.1s2.1 1.7 2.1 4.4a2.5 2.5 0 0 0 5 0"/><path d="M9.6 9.5a2.4 2.4 0 0 1 4.8 0c0 1.4-.9 1.9-1.4 2.9"/></svg>
+              <span>la phrase passe par 5 oreilles</span>
+            </div>
+            <p class="murm-line" id="mrLine"></p>
+            <div class="quiz-opts" id="mrOpts"></div>
+            <p class="quiz-fb" id="mrFb"></p>
+            <button class="btn btn-line quiz-next" id="mrNext" hidden><span class="nx">Suivant</span> <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="card-foot">
+          <span class="card-note">5 oreilles. 0 ressentiment</span>
+          <a class="btn btn-line" href="studio_murmure_cb.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <!-- N°05 ATTRAPE -->
+      <article class="studio-card reveal" id="card-attrape">
+        <div class="card-head"><span class="card-num">N°05</span><span class="card-tag">Studio spécialisé — Attrape-tout</span></div>
+        <h3>L'Attrape-tout</h3>
+        <p class="card-desc">Ce qui tombe du ciel de la marque, on l'attrape ; ce qui tombe mal, on l'esquive. Quinze secondes, un panier, des réflexes — la souris suffit.</p>
+        <div class="game-frame">
+          <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
+          <div class="gf-bar"><b>Plateau de démo — Attrape</b>
+            <span class="gf-right"><span class="gf-status" id="atStatus">Prêt — 15 s au chrono</span>
+            <button class="mini-btn txt" id="atStart">DÉMARRER</button></span>
+          </div>
+          <canvas class="game-canvas" id="cvAttrape" width="340" height="224" aria-label="Démo d'attrape-tout — bougez la souris pour jouer"></canvas>
+        </div>
+        <div class="card-foot">
+          <span class="card-note">Les imprévus tombent aussi. D'où le −1</span>
+          <a class="btn btn-line" href="studio_attrape.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <!-- N°06 QUIZ -->
       <article class="studio-card reveal" id="card-quiz">
-        <div class="card-head"><span class="card-num">N°04</span><span class="card-tag">Studio spécialisé — Quiz</span></div>
+        <div class="card-head"><span class="card-num">N°06</span><span class="card-tag">Studio spécialisé — Quiz</span></div>
         <h3>Le Quiz</h3>
         <p class="card-desc">Le plus direct des six : des questions, des pièges, et votre histoire racontée en relief. On écrit les questions avec vous — soyez honnête.</p>
         <div class="game-frame">
@@ -650,55 +639,12 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
             <p class="quiz-text" id="qzText"></p>
             <div class="quiz-opts" id="qzOpts"></div>
             <p class="quiz-fb" id="qzFb"></p>
-            <button class="btn btn-line quiz-next" id="qzNext" hidden>Suivant <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <button class="btn btn-line quiz-next" id="qzNext" hidden><span class="nx">Suivant</span> <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           </div>
         </div>
         <div class="card-foot">
           <span class="card-note">3 questions sur le métier lui-même</span>
-          <button class="btn btn-line studio-link" data-studio="quiz">Visiter le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
-        </div>
-      </article>
-
-      <!-- N°05 TAUPE -->
-      <article class="studio-card reveal" id="card-taupe">
-        <div class="card-head"><span class="card-num">N°05</span><span class="card-tag">Studio spécialisé — Tape-taupe</span></div>
-        <h3>Le Tape-Taupe</h3>
-        <p class="card-desc">Vingt secondes pour taper tout ce qui dépasse. Ici, les taupes prennent le visage de votre choix : vos collègues, vos produits, vos concurrents aussi, si vous y tenez.</p>
-        <div class="game-frame">
-          <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-          <div class="gf-bar"><b>Plateau de démo — Tape-taupe</b>
-            <span class="gf-right"><span class="gf-status" id="mlStatus">Prêt — 20 s au chrono</span>
-            <button class="mini-btn txt" id="mlStart">DÉMARRER</button></span>
-          </div>
-          <div class="mole-grid" id="moleGrid"></div>
-        </div>
-        <div class="card-foot">
-          <span class="card-note">20 secondes. Tout ce qui dépasse.</span>
-          <button class="btn btn-line studio-link" data-studio="taupe">Visiter le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
-        </div>
-      </article>
-
-      <!-- N°06 ROUE -->
-      <article class="studio-card reveal" id="card-roue">
-        <div class="card-head"><span class="card-num">N°06</span><span class="card-tag">Studio spécialisé — Roue de la fortune</span></div>
-        <h3>La Roue</h3>
-        <p class="card-desc">Segments dessinés main, lots à votre sauce, et un pointeur qui claque sur chaque cran. Le rituel parfait pour transformer un visiteur en joueur.</p>
-        <div class="game-frame">
-          <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-          <div class="gf-bar"><b>Plateau de démo — Roue</b>
-            <span class="gf-right"><span class="gf-status" id="wrStatus">8 segments — un seul cran de chance</span></span>
-          </div>
-          <div class="roue-body">
-            <div class="roue-stage">
-              <div class="roue-pointer" id="wrPointer"></div>
-              <canvas id="cvRoue" width="242" height="242" aria-label="Démo de roue de la fortune — cliquez pour tourner"></canvas>
-              <button class="roue-go" id="wrGo">TOURNEZ</button>
-            </div>
-          </div>
-        </div>
-        <div class="card-foot">
-          <span class="card-note">Les probabilités sont calibrées avec vous</span>
-          <button class="btn btn-line studio-link" data-studio="roue">Visiter le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <a class="btn btn-line" href="studio_quiz.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
 
@@ -733,7 +679,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <div><span>ÉCRIRE</span>hello@atelierpub.fr</div>
         <div><span>APPELER</span>+33 4 72 10 24 08</div>
         <div><span>VENIR</span>12 rue des Pinceaux, 69001 Lyon</div>
-        <div><span>BUREAUX</span>Lun–Ven, 9 h – 18 h (la machine à sous ne compte pas)</div>
+        <div><span>BUREAUX</span>Lun–Ven, 9 h – 18 h (les démos ne comptent pas)</div>
       </div>
     </div>
     <form id="contactForm" novalidate class="reveal">
@@ -754,11 +700,11 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <select id="fStudio">
           <option>Je ne sais pas encore — conseillez-moi</option>
           <option>Le Memory — Studio Mémo</option>
-          <option>Le Casse-briques — Studio Briques</option>
-          <option>La Machine à sous — Studio Jackpot</option>
+          <option>Le Puzzle — Studio Puzzle</option>
+          <option>Les Mots mêlés — Studio Mots</option>
+          <option>Le Murmure — Studio Murmure</option>
+          <option>L'Attrape-tout — Studio Attrape</option>
           <option>Le Quiz — Studio Quiz</option>
-          <option>Le Tape-Taupe — Studio Taupe</option>
-          <option>La Roue — Studio Roue</option>
         </select>
       </div>
       <div class="field" id="fMsgW">
@@ -782,37 +728,6 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
   </div>
 </footer>
 
-<!-- ================= FICHE STUDIO ================= -->
-<div class="overlay" id="overlay"></div>
-<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="pnTitle">
-  <div class="panel-head" id="pnHead">
-    <p class="eyebrow" id="pnNum"></p>
-    <h3 id="pnTitle"></h3>
-    <span class="game-tag" id="pnTag"></span>
-    <button class="panel-close" id="pnClose" aria-label="Fermer la fiche du studio"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  </div>
-  <div class="panel-body">
-    <p id="pnDesc"></p>
-    <p class="panel-sec">Ce qu'on y personnalise</p>
-    <ul id="pnCust"></ul>
-    <p class="panel-sec">Idéal pour</p>
-    <p class="panel-ideal" id="pnIdeal"></p>
-    <p class="panel-sec">Une fabrication récente</p>
-    <blockquote class="panel-case"><span id="pnCase"></span><b id="pnCaseSrc"></b></blockquote>
-    <p class="panel-sec">La fiche atelier</p>
-    <div class="meta-row"><span>DÉLAI MOYEN</span><span class="dots"></span><b id="pnDelay"></b></div>
-    <div class="meta-row"><span>BUDGET D'AMORÇAGE</span><span class="dots"></span><b id="pnPrice"></b></div>
-    <div class="panel-actions">
-      <button class="btn" id="pnGo">Lancer un projet dans ce studio
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      <div class="panel-url">
-        <code id="pnUrl"></code>
-        <button class="copy-btn" id="pnCopy" aria-label="Copier l'adresse du studio"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg></button>
-      </div>
-    </div>
-  </div>
-</aside>
-
 <div class="toasts" id="toasts"></div>
 
 <script>
@@ -820,7 +735,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 const $  = (s,c=document)=>c.querySelector(s);
 const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const INK='#1C1712', PAPER='#F1EBDD', PAPER2='#E7DEC9', ACCENT='#E8481F';
+const INK='#1C1712', PAPER='#F1EBDD', ACCENT='#E8481F';
 const scOf = card => getComputedStyle(card).getPropertyValue('--sc').trim();
 
 function toast(msg){
@@ -836,92 +751,6 @@ function addPlay(){
   dot.classList.remove('bump'); void dot.offsetWidth; dot.classList.add('bump');
 }
 
-/* ================= DONNÉES DES STUDIOS ================= */
-const STUDIOS={
-  memo:{num:"N°01",name:"Studio Mémo",game:"Le Memory",url:"memo.atelierpub.fr",
-    desc:"Le plus désarmant des classiques de l'atelier. Vos visuels produit remplacent les dessins, la difficulté se règle comme un accordéon, et chaque paire trouvée est une micro-victoire de marque.",
-    cust:["Vos visuels en paires : photos, logos, produits, équipe","Dos de cartes aux couleurs de la marque","Grilles de 3 à 36 paires, difficulté progressive","Chrono, score et classement partageable"],
-    ideal:"Fidélisation · Salons · E-commerce · Rendez-vous internes",
-    scene:"Un memory des douze fromages AOP, dessinés à la main. 8 400 parties en trois semaines, et un panier moyen qui a pris 22 %.",
-    src:"Pour la fromagerie Lachaux",delay:"3 semaines",price:"dès 2 400 €"},
-  briques:{num:"N°02",name:"Studio Briques",game:"Le Casse-briques",url:"briques.atelierpub.fr",
-    desc:"Un plateau, une balle, des briques aux couleurs de la marque qui tombent une à une. La mécanique la plus simple du monde — et pourtant celle qu'on relance sans y penser.",
-    cust:["Briques illustrées : logo, produits, pièces d'un puzzle","La dernière brique cache l'offre ou le lot","Raquette personnalisée : produit, mascotte, outil","Niveaux sur mesure et score global sur 7 jours"],
-    ideal:"Lancements produit · Opérations saisonnières · Newsletter",
-    scene:"Les briques étaient des pièces de vélo ; la dernière révélait −30 %. Temps moyen passé sur la page : 6 minutes.",
-    src:"Pour Vélocité 44",delay:"3 semaines",price:"dès 2 800 €"},
-  jackpot:{num:"N°03",name:"Studio Jackpot",game:"La Machine à sous",url:"jackpot.atelierpub.fr",
-    desc:"Trois rouleaux, un levier, et votre univers de marque au centre. Symboles dessinés sur mesure, économie de crédits calée sur vos lots, et cette tension unique des trois images qui s'alignent.",
-    cust:["Symboles dessinés pour votre marque","Économie de crédits et table de lots à votre sauce","Écran jackpot animé à votre image","Variantes : grattage, rouleaux multiples,_mini-jeux bonus"],
-    ideal:"Événements · E-commerce · Programmes de fidélité",
-    scene:"Les rouleaux s'alignaient sur des chopes ; un jackpot offrait la tournée. 31 000 parties pendant les fêtes.",
-    src:"Pour la brasserie du Quai",delay:"4 semaines",price:"dès 3 200 €"},
-  quiz:{num:"N°04",name:"Studio Quiz",game:"Le Quiz",url:"quiz.atelierpub.fr",
-    desc:"Le plus direct des six : des questions, des pièges soignés, et votre histoire racontée en relief. On écrit les questions avec vous, on récompense ceux qui ont vraiment lu.",
-    cust:["Questions et QCM écrits à quatre mains","Réponses illustrées et explications d'une ligne","Jokers, timers et paliers de difficulté","Certificat ou lot remis en fin de partie"],
-    ideal:"Marques expertes · B2B · Anniversaires de marque",
-    scene:"Dix questions sur les métiers de la terre. 4 min 30 de lecture de marque par joueur, en moyenne.",
-    src:"Pour Céramique & Cie",delay:"2 semaines",price:"dès 1 900 €"},
-  taupe:{num:"N°05",name:"Studio Taupe",game:"Le Tape-Taupe",url:"taupe.atelierpub.fr",
-    desc:"Vingt secondes pour taper tout ce qui dépasse. Le jeu de réflexe le plus partagé de l'atelier : les taupes prennent le visage de votre choix, et le record interne fait office de légende.",
-    cust:["Taupes à votre effigie : collègues, produits, concurrents","Décors sur mesure : bureau, chantier, cuisine, vitrine","Objets bonus et malus à taper (ou à éviter)","Combos, records et défis entre équipes"],
-    ideal:"Séminaires · Recrutement · Réseaux sociaux",
-    scene:"Les taupes étaient des paperasses à classer. Record interne : 47 taps. Il est toujours debout.",
-    src:"Pour le cabinet Mazet & Fils",delay:"2 semaines",price:"dès 1 900 €"},
-  roue:{num:"N°06",name:"Studio Roue",game:"La Roue de la fortune",url:"roue.atelierpub.fr",
-    desc:"La roue, version atelier : segments dessinés main, lots à votre sauce, probabilités calibrées avec vous, et un pointeur qui claque sur chaque cran. Le rituel qui transforme un visiteur en joueur.",
-    cust:["Segments, lots et probabilités sur mesure","Roue géante pour écran tactile en boutique","Limites de tours et cumul de gains","Version silencieuse pour open space (on vous comprend)"],
-    ideal:"Retail · Salons · Fêtes de fin d'année",
-    scene:"Une roue tactile de 1,80 m en vitrine. Une file d'attente le samedi matin. Vraie.",
-    src:"Pour le passage Jouvet",delay:"4 semaines",price:"dès 3 200 €"}
-};
-
-/* ================= FICHE STUDIO ================= */
-const panel=$('#panel'), overlay=$('#overlay');
-let currentStudio=null, lastTrigger=null;
-function openPanel(key,trigger){
-  const s=STUDIOS[key]; if(!s)return;
-  currentStudio=key; lastTrigger=trigger||null;
-  const head=$('#pnHead'); head.style.setProperty('--sc',getComputedStyle($('#card-'+key)).getPropertyValue('--sc'));
-  $('#pnNum').textContent=s.num+" — Fiche atelier";
-  $('#pnTitle').textContent=s.name;
-  $('#pnTag').textContent="Spécialité : "+s.game;
-  $('#pnDesc').textContent=s.desc;
-  $('#pnCust').innerHTML=s.cust.map(c=>
-    `<li><svg viewBox="0 0 24 24"><path d="M4 12.5 10 18 20 6"/></svg>${c.replace('_mini-jeux','mini-jeux')}</li>`).join('');
-  $('#pnIdeal').textContent=s.ideal;
-  $('#pnCase').textContent="« "+s.scene+" »";
-  $('#pnCaseSrc').textContent=s.src;
-  $('#pnDelay').textContent=s.delay;
-  $('#pnPrice').textContent=s.price;
-  $('#pnUrl').textContent=s.url;
-  panel.classList.add('open'); overlay.classList.add('open');
-  document.body.style.overflow='hidden';
-  $('#pnClose').focus();
-}
-function closePanel(){
-  panel.classList.remove('open'); overlay.classList.remove('open');
-  document.body.style.overflow='';
-  if(lastTrigger) lastTrigger.focus();
-}
- $$('.studio-link').forEach(b=>b.addEventListener('click',()=>openPanel(b.dataset.studio,b)));
-overlay.addEventListener('click',closePanel);
- $('#pnClose').addEventListener('click',closePanel);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(panel.classList.contains('open'))closePanel(); if(document.body.classList.contains('menu-open'))toggleMenu(false);}});
- $('#pnGo').addEventListener('click',()=>{
-  const s=STUDIOS[currentStudio]; closePanel();
-  $('#fStudio').value=s.game+" — "+s.name;
-  $('#contact').scrollIntoView({behavior:reduced?'auto':'smooth'});
-  toast('Studio « '+s.name+' » sélectionné dans le formulaire.');
-  setTimeout(()=>$('#fNom').focus({preventScroll:true}),reduced?0:700);
-});
- $('#pnCopy').addEventListener('click',async()=>{
-  const url=STUDIOS[currentStudio].url;
-  try{ await navigator.clipboard.writeText(url); }
-  catch{ const ta=document.createElement('textarea'); ta.value=url; document.body.append(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
-  toast('Adresse copiée : '+url);
-});
-
 /* ================= NAV / BURGER / REVEAL / TAMpon ================= */
 function toggleMenu(force){
   const open=force!==undefined?force:!document.body.classList.contains('menu-open');
@@ -930,6 +759,9 @@ function toggleMenu(force){
 }
  $('#burger').addEventListener('click',()=>toggleMenu());
  $$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&document.body.classList.contains('menu-open'))toggleMenu(false);
+});
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}
@@ -987,172 +819,310 @@ const SHAPES=[
   build();
 })();
 
-/* ================= DÉMO 2 : CASSE-BRIQUES ================= */
-(function initBriques(){
-  const cv=$('#cvBriques'), ctx=cv.getContext('2d'), status=$('#bqStatus');
-  const card=$('#card-briques'), SC=scOf(card);
-  const W=340,H=224,PAD=10; let dpr=1;
-  const S={mode:'idle',lives:3,score:0,speed:175,pad:{x:W/2,w:54},ball:{x:0,y:0,vx:0,vy:0},bricks:[],keys:{}};
-  const total=18;
-  function fit(){dpr=Math.min(2,devicePixelRatio||1); cv.width=W*dpr; cv.height=H*dpr; draw();}
-  function buildBricks(){
-    S.bricks=[]; const cols=6,rows=3,gap=5,bw=(W-PAD*2-gap*(cols-1))/cols,bh=13;
-    for(let r=0;r<rows;r++)for(let c=0;c<cols;c++)
-      S.bricks.push({x:PAD+c*(bw+gap),y:26+r*(bh+gap),w:bw,h:bh,alive:true,row:r});
+/* ================= DÉMO 2 : PUZZLE (taquin 3×3) ================= */
+(function initPuzzle(){
+  const grid=$('#pzGrid'), status=$('#pzStatus');
+  let slots, empty, moves, won;
+  const nb=p=>{
+    const r=Math.floor(p/3), c=p%3, o=[];
+    if(r>0)o.push(p-3); if(r<2)o.push(p+3);
+    if(c>0)o.push(p-1); if(c<2)o.push(p+1);
+    return o;
+  };
+  function shuffle(){
+    do{
+      slots=[0,1,2,3,4,5,6,7,null]; empty=8; let prev=-1;
+      /* on part de l'image résolue et on fait 90 coups valides : toujours solvable */
+      for(let n=0;n<90;n++){
+        const opts=nb(empty).filter(p=>p!==prev);
+        const p=opts[Math.floor(Math.random()*opts.length)];
+        slots[empty]=slots[p]; slots[p]=null; prev=empty; empty=p;
+      }
+    }while(slots.every((v,i)=>v===i));
+    moves=0; won=false; grid.classList.remove('done');
   }
-  const setBall=()=>{S.ball={x:S.pad.x,y:H-26,vx:0,vy:0}; S.mode='idle'; status.textContent='Cliquez pour lancer';};
-  function newGame(){S.lives=3;S.score=0;S.speed=175;buildBricks();setBall();}
-  function launch(){
-    const d=Math.random()<.5?-1:1;
-    S.ball.vx=d*(95+Math.random()*55); S.ball.vy=-195; S.mode='play';
-    status.textContent='Ne laissez pas tomber !';
+  function render(){
+    grid.innerHTML='';
+    slots.forEach((h,p)=>{
+      if(h===null){const e=document.createElement('div');e.className='pz-empty';grid.append(e);return;}
+      const t=document.createElement('button');
+      t.className='pz-tile';
+      t.style.backgroundPosition=`${(h%3)*50}% ${Math.floor(h/3)*50}%`;
+      t.setAttribute('aria-label','Pièce '+(h+1)+' sur 9');
+      t.dataset.p=p;
+      grid.append(t);
+    });
   }
-  function lose(){
-    S.lives--;
-    if(S.lives<=0){S.mode='over';status.textContent='Perdu — cliquez pour rejouer';addPlay();}
-    else{status.textContent=`${S.lives} vie${S.lives>1?'s':''} restante${S.lives>1?'s':''}`;setBall();}
+  function upd(){
+    status.textContent=won?`Reconstitué en ${moves} coups !`:`${moves} coup${moves>1?'s':''} — l'image attend`;
   }
-  cv.addEventListener('click',()=>{
-    if(S.mode==='idle')launch();
-    else if(S.mode==='over'){newGame();launch();}
+  grid.addEventListener('click',e=>{
+    const t=e.target.closest('.pz-tile'); if(!t||won)return;
+    const p=+t.dataset.p;
+    if(!nb(empty).includes(p))return;
+    slots[empty]=slots[p]; slots[p]=null; empty=p; moves++;
+    if(slots.every((v,i)=>v===i)){
+      won=true; grid.classList.add('done'); addPlay();
+      toast('Image reconstituée : le Studio Puzzle s\u2019incline.');
+    }
+    render(); upd();
   });
+  $('#pzReset').addEventListener('click',()=>{shuffle();render();upd();});
+  shuffle(); render(); upd();
+})();
+
+/* ================= DÉMO 3 : MOTS MÊLÉS ================= */
+(function initMots(){
+  const N=8, WORDS=['ENCRE','PAPIER','MARQUE','JEU'];
+  const FILL='EEAARRIINNSSTTULOCPMD';
+  const grid=$('#mmGrid'), list=$('#mmList'), status=$('#mmStatus');
+  const rnd=n=>Math.floor(Math.random()*n);
+  let cells, found, sel, solved;
+  function gen(){
+    for(;;){
+      const L=Array.from({length:N},()=>Array(N).fill(''));
+      let ok=true;
+      WORDS.forEach(w=>{
+        const dirs=[[0,1],[1,0],[1,1]];
+        for(let t=0;t<250;t++){
+          const d=dirs[rnd(3)];
+          const maxR=N-1-d[0]*(w.length-1), maxC=N-1-d[1]*(w.length-1);
+          if(maxR<0||maxC<0)continue;
+          const r0=rnd(maxR+1), c0=rnd(maxC+1);
+          let fit=true;
+          for(let k=0;k<w.length;k++){
+            const ch=L[r0+d[0]*k][c0+d[1]*k];
+            if(ch&&ch!==w[k]){fit=false;break;}
+          }
+          if(fit){
+            for(let k=0;k<w.length;k++)L[r0+d[0]*k][c0+d[1]*k]=w[k];
+            return;
+          }
+        }
+        ok=false;
+      });
+      if(!ok)continue;
+      for(let r=0;r<N;r++)for(let c=0;c<N;c++)
+        if(!L[r][c])L[r][c]=FILL[rnd(FILL.length)];
+      return L;
+    }
+  }
+  function build(){
+    const L=gen();
+    found=new Set(); sel=null; solved=false;
+    grid.innerHTML=''; cells=[];
+    for(let r=0;r<N;r++){
+      cells[r]=[];
+      for(let c=0;c<N;c++){
+        const b=document.createElement('button');
+        b.textContent=L[r][c]; b.dataset.r=r; b.dataset.c=c;
+        grid.append(b); cells[r][c]=b;
+      }
+    }
+    list.innerHTML=WORDS.map(w=>`<span class="mm-chip">${w}</span>`).join('');
+    status.textContent='0/4 mots trouvés';
+  }
+  grid.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b||solved)return;
+    const r=+b.dataset.r, c=+b.dataset.c;
+    if(!sel){sel={r,c,el:b}; b.classList.add('sel'); return;}
+    if(sel.r===r&&sel.c===c){sel.el.classList.remove('sel'); sel=null; return;}
+    const dr=Math.sign(r-sel.r), dc=Math.sign(c-sel.c);
+    const straight=(r===sel.r)||(c===sel.c)||(Math.abs(r-sel.r)===Math.abs(c-sel.c));
+    if(!straight){
+      const pair=[sel.el,b];
+      sel.el.classList.remove('sel'); sel=null;
+      pair.forEach(x=>x.classList.add('no'));
+      setTimeout(()=>pair.forEach(x=>x.classList.remove('no')),300);
+      return;
+    }
+    const len=Math.max(Math.abs(r-sel.r),Math.abs(c-sel.c))+1;
+    const path=[];
+    for(let k=0;k<len;k++)path.push(cells[sel.r+dr*k][sel.c+dc*k]);
+    const str=path.map(x=>x.textContent).join('');
+    const rev=[...str].reverse().join('');
+    const wi=WORDS.findIndex((w,k)=>!found.has(k)&&(w===str||w===rev));
+    sel.el.classList.remove('sel'); sel=null;
+    if(wi>-1){
+      found.add(wi);
+      path.forEach(x=>{x.classList.remove('sel');x.classList.add('found')});
+      list.children[wi].classList.add('hit');
+      if(found.size===WORDS.length){
+        solved=true; status.textContent='4/4 — grille résolue !';
+        addPlay(); toast('Grille résolue : le Studio Mots applaudit.');
+      }else status.textContent=`${found.size}/4 mots trouvés`;
+    }else{
+      path.forEach(x=>x.classList.add('no'));
+      setTimeout(()=>path.forEach(x=>x.classList.remove('no')),300);
+    }
+  });
+  $('#mmReset').addEventListener('click',build);
+  build();
+})();
+
+/* ================= DÉMO 4 : MURMURE ================= */
+(function initMurmure(){
+  const ROUNDS=[
+    {mur:'Trois semelles, prototype inclus…',
+     opts:['Trois semaines, prototype inclus','Trois smillons, prototype excludis','Trois semonces, prototype enclu'],a:0,
+     fb:'Cinq oreilles plus tard, le délai, lui, n\u2019a pas bougé : prototype en 5 jours.'},
+    {mur:'Un jeu sur mousse pour votre marque…',
+     opts:['Un jeu sur scène pour votre marque','Un jeu sous mousse pour votre marque','Un jeu sur mesure pour votre marque'],a:2,
+     fb:'Sur mesure. La mousse, c\u2019est juste l\u2019emballage du colis.'},
+    {mur:'On rejoue pour battre le corps…',
+     opts:['On déjeune pour battre le score','On rejoue pour battre le score','On renonce pour battre le bord'],a:1,
+     fb:'Le score à battre est le vrai moteur. Le corps, lui, suit.'}
+  ];
+  const elN=$('#mrNum'),elL=$('#mrLine'),elO=$('#mrOpts'),elF=$('#mrFb'),elX=$('#mrNext'),elS=$('#mrStatus');
+  let i=0,score=0;
+  function show(){
+    const d=ROUNDS[i];
+    elN.textContent=`Oreille ${i+1}/3`;
+    elL.textContent='« '+d.mur+' »';
+    elF.textContent=''; elX.hidden=true;
+    const order=d.opts.map((t,k)=>({t,k})).sort(()=>Math.random()-.5);
+    elO.innerHTML='';
+    order.forEach(o=>{
+      const b=document.createElement('button');
+      b.className='quiz-opt'; b.textContent=o.t;
+      b.addEventListener('click',()=>{
+        $$('.quiz-opt',elO).forEach(x=>x.disabled=true);
+        if(o.k===d.a){b.classList.add('good');score++;elF.textContent='✓ Exact. '+d.fb;}
+        else{b.classList.add('bad');
+          [...elO.children][order.findIndex(z=>z.k===d.a)].classList.add('good');
+          elF.textContent='✗ Presque. '+d.fb;}
+        elS.textContent=`Score ${score}/3`;
+        elX.hidden=false;
+        elX.querySelector('.nx').textContent=i<2?'Suivant':'Le verdict';
+        elX.focus({preventScroll:true});
+      });
+      elO.append(b);
+    });
+  }
+  elX.addEventListener('click',()=>{
+    i++;
+    if(i<3){show();return;}
+    addPlay();
+    elN.textContent='Verdict';
+    elL.textContent='Oreille '+score+'/3 — '+(score===3
+      ?'absolue. On vous embauche comme auditeur à la chaîne.'
+      :score===2
+      ?'correcte. Le tampon est proche.'
+      :'défaillante. Les murmures vous ont eu — c\u2019est exactement leur effet en soirée.');
+    elO.innerHTML=''; elF.textContent='';
+    elX.querySelector('.nx').textContent='Rejouer';
+    elX.hidden=false; i=-1; score=0; elS.textContent='Score 0/3';
+  });
+  show();
+})();
+
+/* ================= DÉMO 5 : ATTRAPE-TOUT ================= */
+(function initAttrape(){
+  const cv=$('#cvAttrape'), ctx=cv.getContext('2d'), status=$('#atStatus'), btn=$('#atStart');
+  const SC=scOf($('#card-attrape'));
+  const W=340,H=224,DUR=15,BY=H-20; let dpr=1,blink=0,lastRem=DUR;
+  const S={mode:'idle',score:0,bx:W/2,bw:56,items:[],floats:[],t0:0,spawnAt:0,keys:{}};
+  function fit(){dpr=Math.min(2,devicePixelRatio||1);cv.width=W*dpr;cv.height=H*dpr;draw();}
+  function rr(x,y,w,h,r){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h);}
   cv.addEventListener('pointermove',e=>{
     const r=cv.getBoundingClientRect();
-    S.pad.x=Math.max(PAD+S.pad.w/2,Math.min(W-PAD-S.pad.w/2,(e.clientX-r.left)*W/r.width));
+    S.bx=Math.max(S.bw/2+4,Math.min(W-S.bw/2-4,(e.clientX-r.left)*W/r.width));
   });
   addEventListener('keydown',e=>{if(e.key==='ArrowLeft')S.keys.l=1;if(e.key==='ArrowRight')S.keys.r=1;});
   addEventListener('keyup',e=>{if(e.key==='ArrowLeft')S.keys.l=0;if(e.key==='ArrowRight')S.keys.r=0;});
-  function update(dt){
-    if(S.keys.l)S.pad.x=Math.max(PAD+S.pad.w/2,S.pad.x-300*dt);
-    if(S.keys.r)S.pad.x=Math.min(W-PAD-S.pad.w/2,S.pad.x+300*dt);
+  function start(){
+    S.mode='play'; S.score=0; S.items=[]; S.floats=[];
+    S.t0=performance.now(); S.spawnAt=S.t0+350; lastRem=DUR;
+    btn.disabled=true; btn.textContent='EN JEU…';
+    status.textContent='Cadeaux : attrapez. Imprévus : esquivez.';
+  }
+  btn.addEventListener('click',start);
+  cv.addEventListener('click',()=>{if(S.mode==='over')start();});
+  function update(now,dt){
+    if(S.keys.l)S.bx=Math.max(S.bw/2+4,S.bx-320*dt);
+    if(S.keys.r)S.bx=Math.min(W-S.bw/2-4,S.bx+320*dt);
     if(S.mode!=='play')return;
-    const b=S.ball;
-    b.x+=b.vx*dt; b.y+=b.vy*dt;
-    if(b.x<6){b.x=6;b.vx=Math.abs(b.vx);} if(b.x>W-6){b.x=W-6;b.vx=-Math.abs(b.vx);}
-    if(b.y<6){b.y=6;b.vy=Math.abs(b.vy);}
-    if(b.y>H+10){lose();return;}
-    const py=H-19;
-    if(b.vy>0&&b.y+5>=py&&b.y+5<=py+12&&Math.abs(b.x-S.pad.x)<=S.pad.w/2+5){
-      const off=(b.x-S.pad.x)/(S.pad.w/2), ang=off*1.05, sp=Math.min(320,Math.hypot(b.vx,b.vy)*1.03);
-      b.vx=Math.sin(ang)*sp; b.vy=-Math.cos(ang)*sp; b.y=py-6;
+    const elapsed=(now-S.t0)/1000;
+    const rem=Math.ceil(DUR-elapsed);
+    if(rem!==lastRem&&rem>0){lastRem=rem;status.textContent=`${rem} s — score ${S.score}`;}
+    if(elapsed>=DUR){
+      S.mode='over'; btn.disabled=false; btn.textContent='REJOUER';
+      status.textContent=`Terminé — score : ${S.score}. Cliquez pour rejouer.`;
+      addPlay();
+      if(S.score>=18)toast('Score de '+S.score+' à l\u2019attrape-tout : le Studio Attrape s\u2019incline.');
+      return;
     }
-    for(const k of S.bricks){
-      if(!k.alive)continue;
-      if(b.x+5>k.x&&b.x-5<k.x+k.w&&b.y+5>k.y&&b.y-5<k.y+k.h){
-        k.alive=false; S.score++; S.speed+=4;
-        const ox=Math.min(b.x+5-k.x,k.x+k.w-(b.x-5)), oy=Math.min(b.y+5-k.y,k.y+k.h-(b.y-5));
-        if(ox<oy)b.vx*=-1; else b.vy*=-1;
-        const sp=Math.hypot(b.vx,b.vy); b.vx*=S.speed/sp; b.vy*=S.speed/sp;
-        if(S.score===total){S.mode='over';status.textContent='VICTOIRE ! — cliquez pour rejouer';addPlay();}
-        else status.textContent=`Score ${S.score} / ${total} — ${S.lives} vie${S.lives>1?'s':''}`;
-        break;
+    if(now>=S.spawnAt){
+      S.items.push({x:20+Math.random()*(W-40),y:-10,vy:55+Math.random()*55+elapsed*4.5,good:Math.random()<.72,done:false});
+      S.spawnAt=now+360+Math.random()*300;
+    }
+    for(const it of S.items){
+      it.y+=it.vy*dt;
+      if(!it.done&&it.y+7>=BY&&it.y+7<=BY+15&&Math.abs(it.x-S.bx)<=S.bw/2+6){
+        it.done=true;
+        if(it.good){S.score++;S.floats.push({x:it.x,y:BY-8,txt:'+1',col:SC,life:1});}
+        else{S.score=Math.max(0,S.score-1);S.floats.push({x:it.x,y:BY-8,txt:'−1',col:ACCENT,life:1});}
+        status.textContent=`${Math.max(1,rem)} s — score ${S.score}`;
       }
     }
+    S.items=S.items.filter(it=>!it.done&&it.y<H+14);
+    S.floats.forEach(f=>{f.y-=30*dt;f.life-=dt*1.5;});
+    S.floats=S.floats.filter(f=>f.life>0);
   }
-  let blink=0;
   function draw(){
-    blink+=.06;
+    blink+=.05;
     ctx.setTransform(dpr,0,0,dpr,0,0);
     ctx.fillStyle='#EDE4CF'; ctx.fillRect(0,0,W,H);
-    const rowCols=[SC,INK,'#F6F1E4'];
-    for(const k of S.bricks){
-      if(!k.alive)continue;
-      ctx.fillStyle=rowCols[k.row]; ctx.strokeStyle=INK; ctx.lineWidth=1.5;
-      ctx.beginPath();
-      if(ctx.roundRect)ctx.roundRect(k.x,k.y,k.w,k.h,3); else ctx.rect(k.x,k.y,k.w,k.h);
-      ctx.fill(); ctx.stroke();
+    /* le panier */
+    ctx.fillStyle=SC; rr(S.bx-S.bw/2,BY-4,S.bw,6,3); ctx.fill();
+    ctx.strokeStyle=INK; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.fillStyle=INK; rr(S.bx-S.bw/2+3,BY+2,S.bw-6,11,3); ctx.fill();
+    /* les objets qui tombent */
+    for(const it of S.items){
+      if(it.good){
+        ctx.fillStyle=SC; ctx.strokeStyle=INK; ctx.lineWidth=1.5;
+        rr(it.x-8,it.y-6,16,13,2.5); ctx.fill(); ctx.stroke();
+        ctx.fillStyle=PAPER; ctx.fillRect(it.x-1.5,it.y-6,3,13); ctx.fillRect(it.x-8,it.y-1.5,16,3);
+      }else{
+        ctx.fillStyle=INK; ctx.beginPath(); ctx.arc(it.x,it.y,7,0,7); ctx.fill();
+        ctx.strokeStyle=PAPER; ctx.lineWidth=1.6; ctx.beginPath();
+        ctx.moveTo(it.x-3.2,it.y-3.2); ctx.lineTo(it.x+3.2,it.y+3.2);
+        ctx.moveTo(it.x+3.2,it.y-3.2); ctx.lineTo(it.x-3.2,it.y+3.2); ctx.stroke();
+      }
     }
+    /* +1 / −1 */
+    ctx.textAlign='center'; ctx.font='700 12px "Space Mono", monospace';
+    for(const f of S.floats){ctx.globalAlpha=Math.max(0,f.life);ctx.fillStyle=f.col;ctx.fillText(f.txt,f.x,f.y);}
+    ctx.globalAlpha=1;
     ctx.fillStyle=INK;
-    ctx.beginPath();
-    if(ctx.roundRect)ctx.roundRect(S.pad.x-S.pad.w/2,H-19,S.pad.w,9,4.5); else ctx.rect(S.pad.x-S.pad.w/2,H-19,S.pad.w,9);
-    ctx.fill();
-    if(S.mode!=='over'){
-      ctx.fillStyle=ACCENT; ctx.beginPath(); ctx.arc(S.ball.x,S.ball.y,5,0,7); ctx.fill();
-      ctx.strokeStyle=INK; ctx.lineWidth=1.5; ctx.stroke();
-    }
-    ctx.fillStyle=INK; ctx.textAlign='center'; ctx.font='700 11px "Space Mono", monospace';
     if(S.mode==='idle'){
-      ctx.globalAlpha=.55+.45*Math.sin(blink*2);
-      ctx.fillText('CLIQUEZ POUR LANCER',W/2,H/2+8); ctx.globalAlpha=1;
+      ctx.globalAlpha=.5+.5*Math.sin(blink*2);
+      ctx.font='700 10px "Space Mono", monospace';
+      ctx.fillText('15 SECONDES — CLIQUEZ SUR DÉMARRER',W/2,H/2+4);
+      ctx.globalAlpha=1;
     }
     if(S.mode==='over'){
-      ctx.font='800 22px "Bricolage Grotesque", sans-serif';
-      ctx.fillText(S.score===total?'VICTOIRE !':'PERDU…',W/2,H/2-2);
+      ctx.font='800 21px "Bricolage Grotesque", sans-serif';
+      ctx.fillText('TEMPS !',W/2,H/2-4);
       ctx.font='700 10px "Space Mono", monospace';
-      ctx.fillText('cliquez pour rejouer',W/2,H/2+18);
+      ctx.fillText('score : '+S.score+' — cliquez pour rejouer',W/2,H/2+16);
     }
   }
   /* boucle pausée hors écran */
-  let visible=false, running=false, last=0;
+  let visible=false,running=false,last=0;
   function loop(ts){
     if(!visible){running=false;return;}
     const dt=Math.min(.033,(ts-last)/1000||.016); last=ts;
-    update(dt); draw(); requestAnimationFrame(loop);
+    update(ts,dt); draw(); requestAnimationFrame(loop);
   }
   new IntersectionObserver(es=>{
     visible=es[0].isIntersecting;
     if(visible&&!running){running=true;last=performance.now();requestAnimationFrame(loop);}
   }).observe(cv);
-  addEventListener('resize',fit); fit(); newGame();
+  addEventListener('resize',fit); fit();
 })();
 
-/* ================= DÉMO 3 : MACHINE À SOUS ================= */
-(function initSlots(){
-  const SYM=['7','★','◆','€','♠'], CELL=54;
-  const strips=$$('.reel-strip'), msg=$('#jkMsg'), st=$('#jkStatus'), btn=$('#jkSpin'), crEl=$('#jkCredits');
-  let credits=10, spinning=false; const pos=[0,0,0];
-  strips.forEach(s=>{
-    for(let r=0;r<10;r++)SYM.forEach(t=>{const d=document.createElement('div');d.textContent=t;s.append(d);});
-    s.style.transform=`translateY(${-(Math.floor(Math.random()*5))*CELL}px)`;
-  });
-  const setCr=()=>crEl.textContent=credits;
-  function confetti(){
-    const frame=$('#card-jackpot .game-frame'), fr=frame.getBoundingClientRect();
-    for(let i=0;i<12;i++){
-      const p=document.createElement('span'); p.className='cf';
-      const round=Math.random()<.5, col=[SC0,ACCENT,INK][i%3];
-      p.style.cssText=`left:${10+Math.random()*80}%;top:${25+Math.random()*30}%;width:8px;height:${round?8:13}px;background:${col};border-radius:${round?'50%':'2px'};`;
-      frame.append(p);
-      p.animate([{transform:'translateY(0) rotate(0)',opacity:1},{transform:`translateY(${60+Math.random()*50}px) rotate(${180+Math.random()*360}deg)`,opacity:0}],
-        {duration:750+Math.random()*350,easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish=()=>p.remove();
-    }
-  }
-  let SC0;
-  function spin(){
-    if(spinning)return;
-    if(credits<1){msg.textContent='Plus de crédits — recharge gratuite ci-dessous.';return;}
-    SC0=scOf($('#card-jackpot'));
-    spinning=true; btn.disabled=true; credits--; setCr();
-    msg.textContent='Les rouleaux tournent…'; msg.classList.remove('win');
-    st.textContent='Alignez, alignez…';
-    const targets=SYM.map(()=>Math.floor(Math.random()*5));
-    const durs=[950,1380,1810];
-    strips.forEach((s,i)=>{
-      let p=pos[i];
-      if(p>22){s.style.transition='none'; p=pos[i]=p%5; s.style.transform=`translateY(${-p*CELL}px)`; void s.offsetHeight;}
-      const delta=((targets[i]-(p%5))+5)%5 + 5*(3+i*2+Math.floor(Math.random()*2));
-      pos[i]=p+delta;
-      s.classList.add('spinning');
-      s.style.transition=`transform ${reduced?60:durs[i]}ms cubic-bezier(.12,.72,.22,1)`;
-      s.style.transform=`translateY(${-pos[i]*CELL}px)`;
-    });
-    setTimeout(()=>{
-      strips.forEach(s=>s.classList.remove('spinning'));
-      spinning=false; btn.disabled=false; addPlay();
-      const [a,b,c]=targets;
-      if(a===b&&b===c){credits+=5;setCr();msg.textContent='JACKPOT ! +5 crédits. La tournée est pour vous.';msg.classList.add('win');st.textContent='JACKPOT !';confetti();toast('Trois symboles ! Le Studio Jackpot s\u2019incline.');}
-      else if(a===b||b===c||a===c){credits+=1;setCr();msg.textContent='Deux sur trois ! +1 crédit.';msg.classList.add('win');st.textContent='Presque…';}
-      else{msg.textContent='Rien cette fois. La maison garde son crédit.';st.textContent='3 symboles à aligner';}
-    },(reduced?80:1810)+70);
-  }
-  btn.addEventListener('click',()=>{
-    if(credits>0){spin();}
-    else{credits+=10;setCr();msg.textContent='Recharge gratuite. L\u2019atelier est comme ça.';toast('La banque de l\u2019atelier vous offre 10 crédits.');}
-  });
-  setCr();
-})();
-
-/* ================= DÉMO 4 : QUIZ ================= */
+/* ================= DÉMO 6 : QUIZ ================= */
 (function initQuiz(){
   const DATA=[
     {q:"Un joueur qui a aimé une partie garde la marque en tête pendant…",
@@ -1166,12 +1136,12 @@ const SHAPES=[
      fb:"Prototype en 5 jours, livraison moyenne en 3 semaines. C'est écrit sur l'enseigne."}
   ];
   const elN=$('#qzNum'),elT=$('#qzText'),elO=$('#qzOpts'),elF=$('#qzFb'),elX=$('#qzNext'),elS=$('#qzStatus');
-  let i=0,score=0,order=[];
+  let i=0,score=0;
   function show(){
     const d=DATA[i];
     elN.textContent=`Question ${i+1}/3`; elT.textContent=d.q;
     elF.textContent=''; elX.hidden=true;
-    order=d.opts.map((t,k)=>({t,k})).sort(()=>Math.random()-.5);
+    const order=d.opts.map((t,k)=>({t,k})).sort(()=>Math.random()-.5);
     elO.innerHTML='';
     order.forEach(o=>{
       const b=document.createElement('button');
@@ -1183,8 +1153,8 @@ const SHAPES=[
           [...elO.children][order.findIndex(z=>z.k===d.a)].classList.add('good');
           elF.textContent='✗ Raté. '+d.fb;}
         elS.textContent=`Score ${score}/3`;
-        elX.hidden=false; elX.querySelector('svg').nextSibling;
-        elX.childNodes[elX.childNodes.length-1].textContent=i<2?' Suivant':' Voir le score';
+        elX.hidden=false;
+        elX.querySelector('.nx').textContent=i<2?'Suivant':'Voir le score';
         elX.focus({preventScroll:true});
       });
       elO.append(b);
@@ -1194,125 +1164,17 @@ const SHAPES=[
     i++;
     if(i<3){show();return;}
     addPlay();
-    elN.textContent='Résultat'; elT.textContent=`Score : ${score}/3`;
-    elT.textContent=`Verdict : ${score}/3 — `+(score===3?"recruté. Passez quand vous voulez.":score===2?"presque parfait. Deux points de plus et on vous fait un badge.":"le quiz vous a piégé. C'est exactement son effet sur vos clients.");
+    elN.textContent='Résultat';
+    elT.textContent='Verdict : '+score+'/3 — '+(score===3
+      ?'recruté. Passez quand vous voulez.'
+      :score===2
+      ?'presque parfait. Deux points de plus et on vous fait un badge.'
+      :'le quiz vous a piégé. C\u2019est exactement son effet sur vos clients.');
     elO.innerHTML=''; elF.textContent='';
-    elX.childNodes[elX.childNodes.length-1].textContent=' Rejouer';
+    elX.querySelector('.nx').textContent='Rejouer';
     elX.hidden=false; i=-1; score=0; elS.textContent='Score 0/3';
   });
   show();
-})();
-
-/* ================= DÉMO 5 : TAPE-TAUPE ================= */
-(function initMole(){
-  const grid=$('#moleGrid'), status=$('#mlStatus'), btn=$('#mlStart');
-  const MOLE=`<svg viewBox="0 0 60 60">
-    <circle cx="15" cy="17" r="5.5" fill="#8A5A32" stroke="#1C1712" stroke-width="2"/>
-    <circle cx="45" cy="17" r="5.5" fill="#8A5A32" stroke="#1C1712" stroke-width="2"/>
-    <ellipse cx="30" cy="36" rx="20" ry="24" fill="#8A5A32" stroke="#1C1712" stroke-width="2"/>
-    <circle cx="22" cy="30" r="3" fill="#1C1712"/><circle cx="38" cy="30" r="3" fill="#1C1712"/>
-    <ellipse cx="30" cy="41" rx="7.5" ry="5.5" fill="#C99B6A" stroke="#1C1712" stroke-width="1.6"/>
-    <ellipse cx="30" cy="39.5" rx="2.6" ry="1.8" fill="#1C1712"/>
-    <path d="M22 41H13M22.5 44l-8 2.5M38 41h9M37.5 44l8 2.5" stroke="#1C1712" stroke-width="1.3" stroke-linecap="round"/>
-  </svg>`;
-  for(let i=0;i<6;i++){
-    const h=document.createElement('div');
-    h.className='mole-hole'; h.innerHTML=`<span class="mole">${MOLE}</span>`;
-    grid.append(h);
-  }
-  const holes=$$('.mole-hole');
-  let run=false,started=false,score=0,t=20,timers=[],iv=null;
-  const clearAll=()=>{timers.forEach(clearTimeout);clearInterval(iv);timers=[];};
-  function upd(){status.textContent=!started?'Prêt — 20 s au chrono':run?`${t} s — score ${score}`:`Terminé — score : ${score}`;}
-  function up(){
-    if(!run)return;
-    const free=holes.filter(h=>!h.classList.contains('up'));
-    if(free.length){
-      const h=free[Math.floor(Math.random()*free.length)];
-      h.classList.add('up');
-      timers.push(setTimeout(()=>h.classList.remove('up'),620+Math.random()*430));
-    }
-    timers.push(setTimeout(up,240+Math.random()*460));
-  }
-  function end(){
-    run=false; clearAll();
-    holes.forEach(h=>h.classList.remove('up'));
-    btn.textContent='REJOUER'; btn.disabled=false; upd(); addPlay();
-    if(score>=15)toast('Score de '+score+' au tape-taupe : le Studio Taupe applaudit.');
-  }
-  holes.forEach(h=>h.addEventListener('pointerdown',()=>{
-    if(!run||!h.classList.contains('up')||h.dataset.hit)return;
-    h.dataset.hit='1'; score++;
-    const m=h.querySelector('.mole'); m.classList.add('bonk');
-    const pop=document.createElement('span'); pop.className='pop-score'; pop.textContent='+1';
-    h.append(pop);
-    pop.animate([{transform:'translate(-50%,0)',opacity:1},{transform:'translate(-50%,-22px)',opacity:0}],{duration:520,easing:'ease-out'}).onfinish=()=>pop.remove();
-    setTimeout(()=>{h.classList.remove('up'); m.classList.remove('bonk'); setTimeout(()=>delete h.dataset.hit,80);},150);
-    upd();
-  }));
-  btn.addEventListener('click',()=>{
-    clearAll(); holes.forEach(h=>{h.classList.remove('up');delete h.dataset.hit;});
-    run=true; started=true; score=0; t=20; btn.disabled=true; btn.textContent='EN JEU…'; upd();
-    iv=setInterval(()=>{t--;upd(); if(t<=0)end();},1000);
-    up();
-  });
-})();
-
-/* ================= DÉMO 6 : ROUE ================= */
-(function initRoue(){
-  const cv=$('#cvRoue'), ctx=cv.getContext('2d'), st=$('#wrStatus'), go=$('#wrGo'), ptr=$('#wrPointer');
-  const card=$('#card-roue'), SC=scOf(card);
-  const LBL=['-10 %','REJOUEZ','CADEAU','-20 %','×2','LOT MYSTÈRE','MERCI','+1 ESSAI'];
-  const COLS=[SC,PAPER,INK,PAPER,SC,PAPER,INK,PAPER];
-  const TXT =[PAPER,INK,PAPER,INK,PAPER,INK,PAPER,INK];
-  const S=242, R=108, SEG=Math.PI*2/8, TAU=Math.PI*2;
-  let rot=0, spinning=false, lastIdx=-1, dpr=1;
-  const norm=a=>((a%TAU)+TAU)%TAU;
-  function fit(){dpr=Math.min(2,devicePixelRatio||1);cv.width=S*dpr;cv.height=S*dpr;draw();}
-  function draw(){
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    ctx.clearRect(0,0,S,S);
-    ctx.save(); ctx.translate(S/2,S/2); ctx.rotate(rot);
-    for(let i=0;i<8;i++){
-      ctx.beginPath(); ctx.moveTo(0,0); ctx.arc(0,0,R,i*SEG,i*SEG+SEG);
-      ctx.fillStyle=COLS[i]; ctx.fill();
-      ctx.strokeStyle=INK; ctx.lineWidth=2; ctx.stroke();
-      ctx.save(); ctx.rotate(i*SEG+SEG/2);
-      ctx.textAlign='right'; ctx.fillStyle=TXT[i]; ctx.font='700 9.5px "Space Mono", monospace';
-      ctx.fillText(LBL[i],R-11,3.5);
-      ctx.restore();
-    }
-    ctx.beginPath(); ctx.arc(0,0,R,0,TAU); ctx.strokeStyle=INK; ctx.lineWidth=3; ctx.stroke();
-    ctx.restore();
-  }
-  function spin(){
-    if(spinning)return;
-    spinning=true; go.disabled=true;
-    st.textContent='Ça tourne…';
-    const idx=Math.floor(Math.random()*8);
-    let target=-Math.PI/2 - idx*SEG;
-    const k=Math.ceil((rot+6*TAU)/TAU);
-    target+=TAU*k + (Math.random()-.5)*SEG*.55;
-    if(target<=rot)target+=TAU;
-    const from=rot, dur=reduced?400:4300, t0=performance.now();
-    (function step(now){
-      const p=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-p,3);
-      rot=from+(target-from)*e;
-      const cur=Math.floor(norm(-Math.PI/2-rot)/SEG);
-      if(cur!==lastIdx){lastIdx=cur;ptr.classList.add('shift');setTimeout(()=>ptr.classList.remove('shift'),70);}
-      draw();
-      if(p<1)requestAnimationFrame(step);
-      else{
-        spinning=false; go.disabled=false;
-        st.textContent='Vous gagnez : '+LBL[idx];
-        addPlay();
-        if(LBL[idx]==='LOT MYSTÈRE')toast('LOT MYSTÈRE : le Studio Roue ne dira rien. C\u2019est le principe.');
-      }
-    })(t0);
-  }
-  go.addEventListener('click',spin);
-  cv.addEventListener('click',spin);
-  addEventListener('resize',fit); fit();
 })();
 
 /* ================= FORMULAIRE ================= */
