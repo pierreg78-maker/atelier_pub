@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- L'Atelier Pub — la manette-tampon -->
+  <g transform="rotate(-4 32 32)">
+    <rect x="6" y="6" width="52" height="52" rx="14" fill="#E8481F" stroke="#1C1712" stroke-width="4"/>
+    <rect x="13" y="23" width="38" height="19" rx="9.5" fill="#F1EBDD" stroke="#1C1712" stroke-width="3"/>
+    <path d="M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z" fill="#1C1712"/>
+    <circle cx="40" cy="29.5" r="2.5" fill="#1C1712"/>
+    <circle cx="45.5" cy="35" r="2.5" fill="#1C1712"/>
+  </g>
+</svg>
