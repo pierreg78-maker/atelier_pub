@@ -1023,8 +1023,10 @@ const SHAPES=[
     if(S.flash>0){ctx.fillStyle='rgba(192,57,43,'+(S.flash*.5)+')';rr(S.px-cw/2-3,CY-ch/2-3,cw+6,ch+6,4);ctx.fill();}
     ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.font='700 12px "Space Mono", monospace';
     for(const f of S.floats){ctx.globalAlpha=Math.max(0,f.life);ctx.fillStyle=f.col;ctx.fillText(f.txt,f.x,f.y);}
-    ctx.globalAlpha=1;ctx.fillStyle=INK;
-    if(S.mode==='idle'){ctx.globalAlpha=.5+.5*Math.sin(blink*2);ctx.font='700 10px "Space Mono", monospace';ctx.fillText('15 S - DÉPLACEZ-VOUS À LA SOURIS',W/2,H/2+4);ctx.globalAlpha=1;}
+    ctx.globalAlpha=1;
+    if(S.mode!=='play'){ctx.fillStyle=PAPER;ctx.strokeStyle=INK;ctx.lineWidth=1.5;rr(W/2-118,H/2-(S.mode==='over'?30:14),236,S.mode==='over'?54:28,4);ctx.fill();ctx.stroke();}
+    ctx.fillStyle=INK;
+    if(S.mode==='idle'){ctx.globalAlpha=.65+.35*Math.sin(blink*2);ctx.font='700 10px "Space Mono", monospace';ctx.fillText('15 S - DÉPLACEZ-VOUS À LA SOURIS',W/2,H/2+4);ctx.globalAlpha=1;}
     if(S.mode==='over'){ctx.font='800 21px "Bricolage Grotesque", sans-serif';ctx.fillText('TEMPS !',W/2,H/2-4);
       ctx.font='700 10px "Space Mono", monospace';ctx.fillText('score : '+S.score+' - cliquez pour rejouer',W/2,H/2+16);}
   }
