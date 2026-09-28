@@ -50,6 +50,8 @@ textarea{min-height:56px;resize:vertical}
 #ovTitle{font-size:28px;font-weight:900;color:var(--gold);letter-spacing:.08em}
 #ovText{margin:10px 0 16px;color:var(--muted);font-size:14px;line-height:1.5}
 .btnPrimary{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border:none;border-radius:999px;padding:12px 26px;font-weight:800;cursor:pointer;font-family:inherit;font-size:14px}
+.studioNote{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);line-height:1.45}
+.studioNote a{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -108,13 +110,14 @@ textarea{min-height:56px;resize:vertical}
     <div class="actions">
       <button class="btn btnGo" id="btnStart">Démarrer 15 s</button>
       <button class="btn btnGhost" id="btnReset">Revenir à MURMURE</button>
-      <a class="btn btnGhost" href="index.html">Retour accueil</a>
+      <a class="btn btnGhost" href="index.html#studios">Retour catalogue</a>
     </div>
+    <p class="studioNote">Démo : projet en phase de test, rien n’est vendu. MURMURE est une marque fictive inventée pour la démonstration. <a href="mentions-legales.html">Mentions légales</a></p>
   </aside>
   <section id="playCol">
     <div id="app">
       <div id="top">
-        <a id="back" href="index.html">Retour<br>accueil</a>
+        <a id="back" href="#studio" title="Revenir au studio de personnalisation de ce jeu">Retour<br>studio</a>
         <div id="title">MURMURE</div>
       </div>
       <div id="tag">Attrapez le calme. Esquivez la perceuse.</div>
@@ -175,6 +178,8 @@ $("cfgBw").oninput=e=>{state.bw=Math.max(48,Math.min(140,+e.target.value||78));}
 readFile($("cfgBg"),"bg","bg");readFile($("cfgGood"),"good","good");readFile($("cfgBad"),"bad","bad");
 $("btnStart").onclick=start;$("ovBtn").onclick=start;
 $("btnReset").onclick=()=>{Object.assign(state,DEFAULTS);$("cfgTitle").value=state.title;$("cfgTag").value=state.tag;$("cfgGoodName").value=state.goodName;$("cfgBadName").value=state.badName;$("cfgEnd").value=state.end;$("cfgBasket").value=state.basket;$("cfgTime").value=state.time;$("cfgBw").value=state.bw;loadImg(state.bg,"bg");loadImg(state.good,"good");loadImg(state.bad,"bad");applyChrome();G.mode="idle";G.items=[];G.floats=[];G.score=0;$("sc").textContent="0";$("ovTitle").textContent=state.title;$("ovText").textContent="Quinze secondes. Un panier. Ce qui tombe du ciel de la marque, on l\u2019attrape.";$("ovBtn").textContent="Démarrer";$("overlay").classList.add("show");};
+/* Retour (en haut à gauche du jeu) : revient au studio de personnalisation de CE jeu (panneau #studio de la même page). */
+document.getElementById("back").addEventListener("click",e=>{e.preventDefault();const s=document.getElementById("studio");s.scrollIntoView({behavior:"smooth",block:"start"});s.scrollTo({top:0,behavior:"smooth"});const f=s.querySelector("input[type=text],textarea");if(f)f.focus({preventScroll:true});});
 </script>
 </body>
 </html>

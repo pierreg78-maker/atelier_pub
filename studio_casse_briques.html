@@ -94,6 +94,8 @@ textarea{min-height:64px;resize:vertical}
 #vacationScreen{position:absolute;inset:0;display:none;z-index:40;background:#000}
 #vacationScreen.show{display:block}
 #vacationImg{width:100%;height:100%;object-fit:cover;cursor:pointer;display:block}
+.studioNote{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);line-height:1.45}
+.studioNote a{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -163,16 +165,18 @@ textarea{min-height:64px;resize:vertical}
     </div>
 
     <div class="actions">
-      <a class="btn btnGo" href="https://pierreg78-maker.github.io/studio_casse_briques/index_murmure.html">Voir un exemple de campagne</a>
+      <a class="btn btnGo" href="studio_murmure_cb.html">Voir un exemple de campagne (MURMURE, fictive)</a>
       <button class="btn btnGhost" id="btnResetLevel">Revenir aux visuels par défaut de ce niveau</button>
       <button class="btn btnDanger" id="btnResetAll">Réinitialiser toute la démo</button>
+      <a class="btn btnGhost" href="index.html#studios">Retour catalogue</a>
     </div>
+    <p class="studioNote">Démo : projet en phase de test, rien n’est vendu. Textes et visuels d’exemple ; vos personnalisations restent dans votre navigateur. <a href="mentions-legales.html">Mentions légales</a></p>
   </aside>
 
   <section id="playCol">
     <div id="app">
       <div id="top">
-        <a id="back" href="studio.html">Retour</a>
+        <a id="back" href="#studio" title="Revenir au studio de personnalisation de ce jeu">Retour</a>
         <div id="title">Casse-briques</div>
       </div>
       <div id="infos">
@@ -504,7 +508,8 @@ document.getElementById("btnResetAll").onclick=()=>{
   score=0;vies=5;document.getElementById("score").textContent=0;updateVies();
   loadLevel(0);
 };
-/* Retour accueil : lien vers https://pierreg78-maker.github.io/studio/ */
+/* Retour (en haut à gauche du jeu) : revient au studio de personnalisation de CE jeu (panneau #studio de la même page). */
+document.getElementById("back").addEventListener("click",e=>{e.preventDefault();const s=document.getElementById("studio");s.scrollIntoView({behavior:"smooth",block:"start"});s.scrollTo({top:0,behavior:"smooth"});const f=s.querySelector("input[type=text],textarea");if(f)f.focus({preventScroll:true});});
 
 /* ===== NIVEAUX RUNTIME ===== */
 function runtimeLevel(i){

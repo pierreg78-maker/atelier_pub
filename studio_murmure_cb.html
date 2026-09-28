@@ -99,6 +99,8 @@ textarea{min-height:64px;resize:vertical}
 #splash .tag{font-size:14px;font-weight:600;line-height:1.45;color:#EDE6D6}
 #splash .sub{margin-top:8px;font-size:12px;color:var(--muted)}
 #splash.hide{display:none}
+.studioNote{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);line-height:1.45}
+.studioNote a{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -179,13 +181,15 @@ textarea{min-height:64px;resize:vertical}
       <button class="btn btnGo" id="btnPlay">Recharger le niveau en cours</button>
       <button class="btn btnGhost" id="btnResetLevel">Revenir aux visuels par défaut de ce niveau</button>
       <button class="btn btnDanger" id="btnResetAll">Réinitialiser toute la démo</button>
+      <a class="btn btnGhost" href="index.html#studios" style="text-decoration:none;display:block;text-align:center">Retour catalogue</a>
     </div>
+    <p class="studioNote">Démo : projet en phase de test, rien n’est vendu. MURMURE est une marque fictive inventée pour la démonstration. Vos personnalisations restent dans votre navigateur. <a href="mentions-legales.html">Mentions légales</a></p>
   </aside>
 
   <section id="playCol">
     <div id="app">
       <div id="top">
-        <button id="back" type="button" href="studio.html">Retour</button>
+        <button id="back" type="button" title="Revenir au studio de personnalisation de ce jeu">Retour</button>
         <div id="title">MURMURE</div>
       </div>
       <div id="infos">
@@ -539,7 +543,8 @@ document.getElementById("btnResetAll").onclick=()=>{
   score=0;vies=5;document.getElementById("score").textContent=0;updateVies();
   loadLevel(0);
 };
-document.getElementById("back").onclick=()=>{document.getElementById("studio").scrollIntoView({behavior:"smooth"});};
+/* Retour (en haut à gauche du jeu) : revient au studio de personnalisation de CE jeu (panneau #studio de la même page). */
+document.getElementById("back").addEventListener("click",e=>{e.preventDefault();const s=document.getElementById("studio");s.scrollIntoView({behavior:"smooth",block:"start"});s.scrollTo({top:0,behavior:"smooth"});const f=s.querySelector("input[type=text],textarea");if(f)f.focus({preventScroll:true});});
 
 /* ===== NIVEAUX RUNTIME ===== */
 function runtimeLevel(i){

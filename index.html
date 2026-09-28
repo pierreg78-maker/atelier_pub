@@ -156,8 +156,8 @@ body.menu-open .mobile-menu{transform:translateY(0)}
 
 /* memory */
 .mem-board{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:16px}
-.mem-card{aspect-ratio:1;perspective:500px;cursor:pointer;border:none;background:none}
-.mem-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .4s cubic-bezier(.4,1.4,.5,1)}
+.mem-card{display:block;aspect-ratio:1;perspective:500px;cursor:pointer;border:none;background:none;padding:0;font:inherit;color:inherit}
+.mem-inner{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .4s cubic-bezier(.4,1.4,.5,1)}
 .mem-card.flipped .mem-inner{transform:rotateY(180deg)}
 .mem-face{position:absolute;inset:0;border-radius:7px;border:2px solid var(--ink);backface-visibility:hidden;display:grid;place-items:center}
 .mem-back{background:repeating-linear-gradient(45deg,var(--ink) 0 5px,transparent 5px 11px),var(--paper-2)}
@@ -435,7 +435,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
       <article class="studio-card reveal" id="card-memo">
         <div class="card-head"><span class="card-num">N°01</span><span class="card-tag">Studio spécialisé - Memory</span></div>
         <h3>Le Memory</h3>
-        <p class="card-desc">Le plus désarmant des classiques. Vos visuels produits remplacent les dessins, et la difficulté se règle comme un accordéon : trois paires pour un salon, douze pour un concours.</p>
+        <p class="card-desc">Le plus désarmant des classiques. Vos visuels produits remplacent les dessins, et la difficulté se règle comme un accordéon : quatre paires pour un salon, huit pour un concours.</p>
         <div class="game-frame">
           <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
           <div class="gf-bar"><b>Plateau de démo - Memory</b>
@@ -502,7 +502,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         </div>
         <div class="card-foot">
           <span class="card-note">3 vies. Comme dans la vraie vie.</span>
-          <a class="btn btn-line" href="studio_casse_briques.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-line" href="studio_murmure_cb.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
 
@@ -797,7 +797,7 @@ const SHAPES=[
     el.classList.add('flipped');
     if(!first){first=el;return;}
     moves++;lock=true;upd();
-    if(first.dataset.k===el.dataset.k){first.classList.add('matched');el.classList.add('matched');first=null;lock=false;pairs++;upd();if(pairs===4)addPlay();}
+    if(first.dataset.k===el.dataset.k){first.classList.add('matched');el.classList.add('matched');first=null;lock=false;pairs++;upd();if(pairs===4){addPlay();toast('Memory résolu en '+moves+' coups : le Studio Mémo vous salue.');}}
     else setTimeout(()=>{first.classList.remove('flipped');el.classList.remove('flipped');first=null;lock=false;},760);}
   $('#memReset').addEventListener('click',build);build();
 })();

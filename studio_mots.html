@@ -50,6 +50,8 @@ textarea{min-height:110px;resize:vertical}
 #ovTitle{font-size:24px;font-weight:900;color:var(--gold)}
 #ovText{margin:8px 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
 .btnPrimary{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border:none;border-radius:999px;padding:11px 26px;font-weight:800;cursor:pointer;font-family:inherit}
+.studioNote{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);line-height:1.45}
+.studioNote a{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -92,13 +94,14 @@ MURMURE</textarea>
     </div>
     <div class="actions">
       <button class="btn btnGo" id="btnGen">Générer une nouvelle grille</button>
-      <a class="btn btnGhost" href="studio.html">Retour catalogue</a>
+      <a class="btn btnGhost" href="index.html#studios">Retour catalogue</a>
     </div>
+    <p class="studioNote">Démo : projet en phase de test, rien n’est vendu. MURMURE est une marque fictive inventée pour la démonstration. <a href="mentions-legales.html">Mentions légales</a></p>
   </aside>
   <section id="playCol">
     <div id="app">
       <div id="top">
-        <a id="back" href="studio.html">Retour<br>studio</a>
+        <a id="back" href="#studio" title="Revenir au studio de personnalisation de ce jeu">Retour<br>studio</a>
         <div id="title">MURMURE</div>
       </div>
       <div id="tag">Trouvez les mots du silence.</div>
@@ -245,6 +248,8 @@ $("cfgTag").oninput=applyChrome;
 $("btnGen").onclick=generate;
 $("ovBtn").onclick=generate;
 applyChrome(); generate();
+/* Retour (en haut à gauche du jeu) : revient au studio de personnalisation de CE jeu (panneau #studio de la même page). */
+document.getElementById("back").addEventListener("click",e=>{e.preventDefault();const s=document.getElementById("studio");s.scrollIntoView({behavior:"smooth",block:"start"});s.scrollTo({top:0,behavior:"smooth"});const f=s.querySelector("input[type=text],textarea");if(f)f.focus({preventScroll:true});});
 </script>
 </body>
 </html>
