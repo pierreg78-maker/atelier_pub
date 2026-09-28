@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>L'Atelier Pub - services marketing & studio de jeux</title>
-<meta name="description" content="Un bureau de services marketing et un studio de mini-jeux personnalisables. Six studios, cinq agents IA, des démos jouables sur la page.">
+<meta name="description" content="Un bureau de services marketing et un studio de mini-jeux personnalisables. Six studios, cinq agents IA, des démos jouables sur la page. Projet en phase de test.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-4 32 32)'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%23E8481F' stroke='%231C1712' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23F1EBDD' stroke='%231C1712' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%231C1712'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%231C1712'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%231C1712'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-4 32 32)'%3E%3Crect x='6' y='6' width='52' height='52' rx='14' fill='%231C1712' stroke='%23F1EBDD' stroke-width='4'/%3E%3Crect x='13' y='23' width='38' height='19' rx='9.5' fill='%23E8481F' stroke='%23F1EBDD' stroke-width='3'/%3E%3Cpath d='M24 27h4v4h4v4h-4v4h-4v-4h-4v-4h4z' fill='%23F1EBDD'/%3E%3Ccircle cx='40' cy='29.5' r='2.5' fill='%23F1EBDD'/%3E%3Ccircle cx='45.5' cy='35' r='2.5' fill='%23F1EBDD'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +42,10 @@ mark{background:var(--accent);color:var(--paper);padding:0 .12em;box-decoration-
 .btn svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
+/* bannière projet en test */
+.test-banner{background:var(--kraft);border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-align:center;padding:6px 14px;color:var(--ink)}
+.test-banner b{color:var(--accent)}
+.test-banner a{text-decoration:underline;text-underline-offset:2px}
 /* header */
 header{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:2px solid var(--ink)}
 .header-in{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
@@ -242,6 +246,8 @@ body.menu-open .mobile-menu{transform:translateY(0)}
 .ms-log{background:var(--ink);color:var(--paper);border-radius:9px;padding:14px 16px;height:196px;overflow-y:auto;font-size:12px;line-height:1.85;box-shadow:4px 4px 0 var(--accent)}
 .ms-line{animation:toastIn .3s}
 .ms-line b{color:var(--accent)}
+.ms-sim-tag{display:inline-block;margin-top:22px;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--accent);color:var(--paper);border:2px solid var(--ink);border-radius:5px;padding:3px 10px;transform:rotate(-1.5deg);box-shadow:2px 2px 0 var(--ink)}
+.ms-sim-tag + .ms-tally{margin-top:12px}
 .ms-tally{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px;border-top:2px dashed var(--ink-2);padding-top:18px}
 @media(max-width:820px){.ms-tally{grid-template-columns:repeat(2,1fr)}}
 .tally b{display:block;font-size:clamp(1.45rem,2.6vw,2.05rem);font-weight:800;letter-spacing:-.02em;line-height:1.1}
@@ -292,6 +298,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 .foot-in{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-2)}
 .foot-in nav{display:flex;gap:20px;flex-wrap:wrap}
 .foot-in nav a:hover{color:var(--accent)}
+.foot-test{flex-basis:100%;text-align:center;font-size:10.5px;letter-spacing:.06em}
 
 .toasts{position:fixed;bottom:20px;left:20px;z-index:150;display:flex;flex-direction:column;gap:10px;max-width:min(360px,calc(100vw - 40px))}
 .toast{background:var(--ink);color:var(--paper);border-left:4px solid var(--accent);font-family:var(--mono);font-size:12px;line-height:1.5;padding:13px 16px;border-radius:6px;box-shadow:4px 4px 0 rgba(28,23,18,.28);animation:toastIn .35s cubic-bezier(.3,1.4,.5,1)}
@@ -325,6 +332,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 </style>
 </head>
 <body id="top">
+<p class="test-banner">✳ <b>Projet en phase de test</b> — aucune prestation commercialisée pour l'instant. <a href="mentions-legales.html">En savoir plus</a></p>
 
 <header>
   <div class="wrap header-in">
@@ -337,7 +345,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
       <a href="#agents">Bureau d'agents IA</a>
       <a href="#methode">La méthode</a>
       <a href="#contact">Contact</a>
-      <a href="#contact" class="btn">Démarrer un projet
+      <a href="#contact" class="btn">Nous écrire
         <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </nav>
     <button class="burger" id="burger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
@@ -347,7 +355,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
   <a href="#studios"><span>Les six studios</span><i>N°01 → N°06</i></a>
   <a href="#agents"><span>Bureau d'agents IA</span><i>5 agents</i></a>
   <a href="#methode"><span>La méthode</span><i>4 étapes</i></a>
-  <a href="#contact"><span>Contact</span><i>24 h</i></a>
+  <a href="#contact"><span>Contact</span><i>formulaire</i></a>
 </nav>
 
 <main>
@@ -363,7 +371,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
         <a href="#agents" class="btn btn-line">Bureau d'agents IA</a>
       </div>
-      <p class="play-counter mono"><span class="dot" id="playDot"></span><b id="playCount">0</b>&nbsp;parties jouées sur cette page - tous les jeux ci-dessous sont réels.</p>
+      <p class="play-counter mono"><span class="dot" id="playDot"></span><b id="playCount">0</b>&nbsp;parties jouées par vous sur cette page - tous les jeux ci-dessous sont réels.</p>
       <div class="swatch-wrap">
         <p class="swatch-label mono">La palette des six studios - cliquez pour sauter à un atelier</p>
         <div class="swatch">
@@ -381,7 +389,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <svg class="stamp-ring" viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="stampPath" d="M60 60 m -46 0 a 46 46 0 1 1 92 0 a 46 46 0 1 1 -92 0"/></defs>
           <text style="font-family:var(--mono);font-size:10.2px;font-weight:700;letter-spacing:2.4px" fill="currentColor">
-            <textPath href="#stampPath">L'ATELIER PUB ✳ MARKETING ✳ JEUX SUR MESURE ✳ DEPUIS 2016 ✳</textPath>
+            <textPath href="#stampPath">L'ATELIER PUB ✳ MARKETING ✳ JEUX SUR MESURE ✳ FAIT MAIN ✳</textPath>
           </text>
           <circle cx="60" cy="60" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/>
         </svg>
@@ -406,8 +414,8 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em></span>
-    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em></span>
+    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em>Nouvel atelier, vieux métier<em>✳</em></span>
+    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em>Nouvel atelier, vieux métier<em>✳</em></span>
   </div>
 </div>
 
@@ -437,7 +445,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <div class="gf-body tinted"><div class="mem-board" id="memBoard"></div></div>
         </div>
         <div class="card-foot">
-          <span class="card-note">Temps moyen : 40 secondes de marque</span>
+          <span class="card-note">Objectif : 40 secondes de marque</span>
           <a class="btn btn-line" href="studio_memory.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
@@ -567,7 +575,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <li>Alertes concurrents & prix</li>
           <li>Chasse aux avis négatifs</li>
         </ul>
-        <p class="agent-cash">Remplace : <em>3 h de veille par jour</em></p>
+        <p class="agent-cash">Pensé pour alléger : <em>3 h de veille par jour</em></p>
       </article>
 
       <article class="agent-card reveal" data-agent="ATLAS" style="--ac:var(--c-mots)">
@@ -581,7 +589,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <li>Personas & angles de marque</li>
           <li>Calendrier & budget suivi</li>
         </ul>
-        <p class="agent-cash">Remplace : <em>le brief d'agence (3 j-h)</em></p>
+        <p class="agent-cash">Pensé pour alléger : <em>le brief d'agence (3 j-h)</em></p>
       </article>
 
       <article class="agent-card reveal" data-agent="PLUME" style="--ac:var(--c-briques)">
@@ -595,7 +603,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <li>Pages produits & SEO</li>
           <li>Scripts des mini-jeux</li>
         </ul>
-        <p class="agent-cash">Remplace : <em>le lot mensuel de contenus</em></p>
+        <p class="agent-cash">Pensé pour alléger : <em>le lot mensuel de contenus</em></p>
       </article>
 
       <article class="agent-card reveal" data-agent="MAÇON" style="--ac:var(--c-puzzle)">
@@ -605,11 +613,11 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <p class="agent-role">Le web - sites & landing pages</p>
         <p class="agent-line">« Des pages rapides, solides, livrées avant que le café refroidisse. »</p>
         <ul class="agent-deliv">
-          <li>Landing pages en 48 h</li>
+          <li>Landing pages express</li>
           <li>Sites vitrines complets</li>
           <li>Intégrations & analytics</li>
         </ul>
-        <p class="agent-cash">Remplace : <em>la refonte de site (6–12 sem.)</em></p>
+        <p class="agent-cash">Pensé pour alléger : <em>la refonte de site (6–12 sem.)</em></p>
       </article>
 
       <article class="agent-card reveal" data-agent="ECHO" style="--ac:var(--c-attrape)">
@@ -617,13 +625,13 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <div class="agent-photo"></div>
         <h3>ÉCHO</h3>
         <p class="agent-role">La diffusion - communauté & campagnes</p>
-        <p class="agent-line">« On répond aux gens. Le soir, le dimanche, les jours de fête. »</p>
+        <p class="agent-line">« On prépare vos réponses le soir, le dimanche, les jours de fête. Vous validez. »</p>
         <ul class="agent-deliv">
           <li>Programmation sur 4 canaux</li>
-          <li>Réponses & modération</li>
+          <li>Réponses préparées, validées par vous</li>
           <li>Rapport de campagne chiffré</li>
         </ul>
-        <p class="agent-cash">Remplace : <em>le community manager à temps partiel</em></p>
+        <p class="agent-cash">Pensé pour alléger : <em>le community manager à temps partiel</em></p>
       </article>
     </div>
 
@@ -646,18 +654,19 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         <li data-k="ECHO">ÉCHO</li>
       </ol>
       <div class="ms-log" id="msLog" aria-live="polite"></div>
+      <p class="ms-sim-tag">Exemple simulé</p>
       <div class="ms-tally">
-        <div class="tally"><b id="tvA">0</b><span class="t-lab">livrables rendus<em>La valeur créée</em></span></div>
-        <div class="tally"><b id="tvB">0</b><span class="t-lab">jours-homme rendus au client<em>La valeur économisée</em></span></div>
-        <div class="tally"><b id="tvC">0 €</b><span class="t-lab">d'honoraires d'agence évités<em>La valeur économisée</em></span></div>
-        <div class="tally"><b id="tvD">0 h</b><span class="t-lab">de délai au lieu de 3 semaines<em>La valeur créée</em></span></div>
+        <div class="tally"><b id="tvA">0</b><span class="t-lab">livrables (exemple)<em>Valeur créée - simulée</em></span></div>
+        <div class="tally"><b id="tvB">0</b><span class="t-lab">jours-homme rendus au client<em>Valeur économisée - simulée</em></span></div>
+        <div class="tally"><b id="tvC">0 €</b><span class="t-lab">d'honoraires d'agence évités (montant fictif)<em>Valeur économisée - simulée</em></span></div>
+        <div class="tally"><b id="tvD">0 h</b><span class="t-lab">de délai simulé (vs ~3 semaines d'ordinaire)<em>Valeur créée - simulée</em></span></div>
       </div>
-      <p class="ms-fine">Simulation d'une mission type « lancement de gamme ». Ordre de grandeur vérifié en conditions réelles : la même prestation facturée <b>7 940 €</b> par une agence classique coûte ici <b>240 €</b> de mission - et le client garde la main sur tout.</p>
+      <p class="ms-fine"><b>Simulation indicative</b> d'une mission type « lancement de gamme ». Les montants sont des exemples, pas des tarifs : aucun résultat client réel n'est affiché ici. Le projet est en phase de test et aucune prestation n'est commercialisée pour l'instant - et, le jour venu, le client gardera la main sur tout.</p>
     </div>
 
     <div class="agents-foot reveal">
-      <p><b>Composer sa propre équipe :</b> vous choisissez un agent ou les cinq, à la mission ou au mois. Le bureau fonctionne la nuit, les week-ends et pendant vos vacances - c'est exactement pour ça qu'il existe.</p>
-      <button class="btn" id="agentsGo">Composer mon équipe d'agents
+      <p><b>Composer sa propre équipe :</b> un agent ou les cinq, c'est l'idée. Le bureau prépare le travail la nuit, le week-end et pendant vos vacances ; vous validez au retour, et rien ne part sans vous. On cherche quelques premiers testeurs pour le roder.</p>
+      <button class="btn" id="agentsGo">Rejoindre les premiers testeurs
         <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
   </div>
@@ -672,9 +681,9 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
     </div>
     <div class="steps">
       <div class="step reveal"><span class="step-num">01</span><h3>Le brief</h3><p>Un jeu ou une mission : vous décrivez la marque et l'objectif. On choisit le studio ou l'agent - ou on vous dit honnêtement que ce n'est pas pour nous.</p></div>
-      <div class="step reveal"><span class="step-num">02</span><h3>Le prototype</h3><p>Côté jeux : version jouable sous 5 jours. Côté bureau : plan d'action et première maquette sous 48 h. On teste sur de vrais visiteurs.</p></div>
+      <div class="step reveal"><span class="step-num">02</span><h3>Le prototype</h3><p>Côté jeux : une version jouable en quelques jours. Côté bureau : un plan d'action et une première maquette, vite. On teste avant de livrer.</p></div>
       <div class="step reveal"><span class="step-num">03</span><h3>La fabrication</h3><p>Tout est cousu main : visuels et règles du jeu, textes et pages du site. Rien n'est plaqué, tout est intégré.</p></div>
-      <div class="step reveal"><span class="step-num">04</span><h3>La livraison</h3><p>Un lien, un QR code, un embed - ou un site en ligne. Et un rapport chiffré, pour prouver que ça a marché.</p></div>
+      <div class="step reveal"><span class="step-num">04</span><h3>La livraison</h3><p>Un lien, un QR code, un embed - ou un site en ligne. Et un rapport pour mesurer ce qui a marché.</p></div>
     </div>
   </div>
 </section>
@@ -685,30 +694,34 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
     <div class="contact-info reveal">
       <p class="eyebrow">- Parlons de votre projet</p>
       <h2>Un jeu ou une mission vous <em>démange</em> ?</h2>
-      <p>Racontez-nous la marque : on propose le jeu, l'équipe d'agents, ou les deux. Réponse sous 24 h ouvrées, prototype sous 5 jours. C'est écrit sur l'enseigne.</p>
+      <p>L'atelier est en phase de test : racontez-nous votre marque et devenez l'un des premiers testeurs. On imagine le jeu, l'équipe d'agents, ou les deux. Réponse rapide, prototype en quelques jours.</p>
+      <!-- À COMPLÉTER : vraie adresse email de contact (ligne ÉCRIRE ci-dessous) -->
       <div class="contact-lines mono">
-        <div><span>ÉCRIRE</span>hello@atelierpub.fr</div>
-        <div><span>APPELER</span>+33 4 72 10 24 08</div>
-        <div><span>VENIR</span>12 rue des Pinceaux, 69001 Lyon</div>
-        <div><span>BUREAUX</span>Lun–Ven, 9 h – 18 h (les agents ne dorment jamais)</div>
+        <div><span>ÉCRIRE</span>Écrivez-nous via le formulaire</div>
+        <div><span>STATUT</span>Projet en phase de test, pas encore commercialisé</div>
+        <div><span>AGENTS</span>ils préparent la nuit, vous validez le matin</div>
       </div>
     </div>
+    <!-- À BRANCHER : ce formulaire n'envoie encore rien (aucun action/serveur).
+         Pour le connecter, créer un formulaire Formspree (ou équivalent) et renseigner
+         son URL dans la constante FORM_ENDPOINT du script en bas de page,
+         ex. https://formspree.io/f/xxxxxxx. Mettre à jour les mentions légales en conséquence. -->
     <form id="contactForm" novalidate class="reveal">
       <div class="form-row">
         <div class="field" id="fNomW">
           <label for="fNom">Votre nom</label>
-          <input id="fNom" type="text" autocomplete="name" placeholder="Camille Fontaine">
+          <input id="fNom" name="nom" type="text" autocomplete="name" placeholder="Camille Fontaine">
           <p class="err">Dites-nous au moins comment vous appeler.</p>
         </div>
         <div class="field" id="fMailW">
           <label for="fMail">Votre email</label>
-          <input id="fMail" type="email" autocomplete="email" placeholder="camille@votremarque.fr">
+          <input id="fMail" name="email" type="email" autocomplete="email" placeholder="camille@votremarque.fr">
           <p class="err">Cet email semble avoir perdu une pièce.</p>
         </div>
       </div>
       <div class="field">
-        <label for="fStudio">Que faut-il fabriquer ?</label>
-        <select id="fStudio">
+        <label for="fStudio">Qu'aimeriez-vous tester ?</label>
+        <select id="fStudio" name="sujet">
           <option value="nsp">Je ne sais pas encore - conseillez-moi</option>
           <option value="memo">Le Memory - Studio Mémo</option>
           <option value="puzzle">Le Puzzle - Studio Puzzle</option>
@@ -716,13 +729,13 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <option value="briques">Le Casse-briques - Studio Briques</option>
           <option value="attrape">L'Attrape-tout - Studio Attrape</option>
           <option value="quiz">Le Quiz - Studio Quiz</option>
-          <option value="agents">Composer une équipe d'agents IA</option>
-          <option value="mission">Une mission marketing ponctuelle</option>
+          <option value="agents">Tester l'équipe d'agents IA</option>
+          <option value="mission">Tester une mission marketing ponctuelle</option>
         </select>
       </div>
       <div class="field" id="fMsgW">
         <label for="fMsg">Votre projet</label>
-        <textarea id="fMsg" placeholder="Une marque de café, un lancement en septembre, une audience de 40 000 abonnés…"></textarea>
+        <textarea id="fMsg" name="message" placeholder="Une marque de café, un lancement en septembre, une audience de 40 000 abonnés…"></textarea>
         <p class="err">Quelques mots de plus nous aideront à choisir le bon jeu - ou le bon agent.</p>
       </div>
       <button type="submit" class="btn" id="fSubmit">Envoyer à l'atelier
@@ -734,9 +747,10 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 
 <footer>
   <div class="wrap foot-in">
-    <span>© 2025 L'Atelier Pub - Bureau de services marketing & studio de jeux sur mesure.</span>
-    <nav><a href="#studios">Studios</a><a href="#agents">Agents IA</a><a href="#methode">Méthode</a><a href="#contact">Contact</a></nav>
+    <span>© 2026 L'Atelier Pub - Bureau de services marketing & studio de jeux sur mesure.</span>
+    <nav><a href="#studios">Studios</a><a href="#agents">Agents IA</a><a href="#methode">Méthode</a><a href="#contact">Contact</a><a href="mentions-legales.html">Mentions légales</a></nav>
     <span>Fabriqué à la main. Même le pixel.</span>
+    <span class="foot-test">Projet en phase de test — aucune prestation commercialisée pour l'instant.</span>
   </div>
 </footer>
 
@@ -983,12 +997,12 @@ const SHAPES=[
 /* ================= DÉMO QUIZ ================= */
 (function(){
   const DATA=[
-    {q:"Un joueur qui a aimé une partie garde la marque en tête pendant…",opts:["huit secondes, comme un post","trois jours, en moyenne","zéro seconde, comme un banner"],a:1,
-     fb:"La mémoire émotionnelle d'une partie tient plusieurs jours. C'est de la pub qui reste."},
+    {q:"Un joueur qui a aimé une partie, en général…",opts:["l'oublie aussitôt, comme un post","la raconte et la rejoue","zappe, comme devant un bandeau"],a:1,
+     fb:"Une partie qu'on a aimée, on en parle et on y revient. C'est tout le pari : de la pub qui reste."},
     {q:"Qu'est-ce qui fait rejouer quelqu'un, presque à coup sûr ?",opts:["un lot à gagner","un score à battre","la politesse du bouton"],a:1,
      fb:"Le score à battre est le vrai moteur. Chaque studio de l'atelier le met en scène."},
-    {q:"Combien de temps pour livrer un jeu personnalisé, chez nous ?",opts:["six mois et des réunions","trois semaines, prototype inclus","« on vous recontacte »"],a:1,
-     fb:"Prototype en 5 jours, livraison moyenne en 3 semaines. C'est écrit sur l'enseigne."}];
+    {q:"Combien de temps pour fabriquer un jeu personnalisé, chez nous ?",opts:["six mois et des réunions","le temps qu'il faut, prototype en quelques jours","« on vous recontacte »"],a:1,
+     fb:"Le calendrier se cale sur votre brief, pas sur une enseigne. Et l'atelier est encore en phase de test : les premiers projets servent à le roder."}];
   const elN=$('#qzNum'),elT=$('#qzText'),elO=$('#qzOpts'),elF=$('#qzFb'),elX=$('#qzNext'),elS=$('#qzStatus');
   let i=0,score=0;
   function show(){
@@ -1037,8 +1051,9 @@ const SHAPES=[
     {k:'RADAR', line:'Balayage du marché, des concurrents et des avis… 14 signaux retenus, 3 alertes remontées.', d:1100},
     {k:'ATLAS', line:'Brief assemblé : cible « parents 30–45 ans », angle « le calme retrouvé », budget verrouillé.', d:1100},
     {k:'PLUME', line:'12 posts, 1 newsletter, 3 pages produits et les dialogues du mini-jeu de lancement. Ton validé.', d:1000},
-    {k:'MAÇON', line:'Landing page assemblée, testée, déployée. Lighthouse 98 - le café est encore chaud.', d:1100},
-    {k:'ECHO',  line:'Campagne programmée sur 4 canaux. Première réponse à la communauté à 6 minutes.', d:1000}];
+    {k:'MAÇON', line:'Landing page assemblée et testée, prête à partir dès votre feu vert. Le café est encore chaud.', d:1100},
+    {k:'ECHO',  line:'Campagne préparée sur 4 canaux, premières réponses rédigées : tout attend votre validation.', d:1000}];
+  /* Valeurs d'EXEMPLE (simulation) - pas des résultats mesurés. Affichées sous l'étiquette « Exemple simulé ». */
   const TALLY=[['tvA',27,v=>v],['tvB',11,v=>v],['tvC',7700,v=>v.toLocaleString('fr-FR')+' €'],['tvD',48,v=>v+' h']];
   const log=$('#msLog'),chain=$('#msChain'),run=$('#msRun');
   const cards={};$$('.agent-card').forEach(c=>cards[c.dataset.agent]=c);
@@ -1064,6 +1079,7 @@ const SHAPES=[
     $$('#msChain li').forEach(li=>{li.classList.remove('active','done');});
     Object.keys(cards).forEach(k=>setState(k,''));
     const open=document.createElement('div');open.className='ms-line';
+    const demo=document.createElement('div');demo.className='ms-line';demo.innerHTML='<b>[DÉMO]</b> Simulation - agents, chiffres et délais sont des exemples fictifs.';log.append(demo);
     open.innerHTML='<b>[CHARLIE]</b> Brief reçu au téléphone : « Lancez la gamme d\u2019automne. Vous savez quoi faire. »';
     log.append(open);
     for(const step of FLOW){
@@ -1078,11 +1094,11 @@ const SHAPES=[
       log.append(l);log.scrollTop=log.scrollHeight;}
     await sleep(reduced?120:800);
     const fin=document.createElement('div');fin.className='ms-line';
-    fin.innerHTML='<b>[BUREAU]</b> Mission clôturée - 27 livrables, zéro réunion. Le rapport attend Charlie.';
+    fin.innerHTML='<b>[BUREAU]</b> Mission simulée clôturée - 27 livrables (exemple), zéro réunion. Le rapport attend la validation de Charlie.';
     log.append(fin);log.scrollTop=log.scrollHeight;
     TALLY.forEach(([id,target,fmt],i)=>setTimeout(()=>countUp($('#'+id),target,fmt),i*160));
     addPlay&&null;
-    toast('Mission terminée : 27 livrables, 11 j-h et 7 700 € rendus au client.');
+    toast('Simulation terminée : 27 livrables, 11 j-h et 7 700 € - chiffres d\u2019exemple, pas des résultats.');
     run.textContent='Relancer la mission';
     run.disabled=false;busy=false;});
 })();
@@ -1091,28 +1107,35 @@ const SHAPES=[
  $('#agentsGo').addEventListener('click',()=>{
   $('#fStudio').value='agents';
   document.getElementById('contact').scrollIntoView({behavior:reduced?'auto':'smooth'});
-  toast('Équipe d\u2019agents : dites-nous juste la mission.');
+  toast('Premiers testeurs : dites-nous juste la mission rêvée.');
   setTimeout(()=>$('#fNom').focus({preventScroll:true}),reduced?0:700);
 });
 
-/* ================= FORMULAIRE ================= */
- $('#contactForm').addEventListener('submit',e=>{
+/* ================= FORMULAIRE =================
+   À BRANCHER : tant que FORM_ENDPOINT est vide, rien n'est envoyé nulle part
+   et le visiteur en est informé honnêtement. Renseigner l'URL Formspree
+   (ou équivalent, POST + réponse JSON) pour activer l'envoi réel. */
+const FORM_ENDPOINT=''; /* ex. 'https://formspree.io/f/xxxxxxx' */
+ $('#contactForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const nom=$('#fNom'),mail=$('#fMail'),txt=$('#fMsg');
+  const form=e.target,nom=$('#fNom'),mail=$('#fMail'),txt=$('#fMsg');
   let ok=true;
   const check=(c,w)=>{$(w).classList.toggle('invalid',!c);if(!c)ok=false;};
   check(nom.value.trim().length>=2,'#fNomW');
   check(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim()),'#fMailW');
   check(txt.value.trim().length>=10,'#fMsgW');
   if(!ok){toast('Le formulaire boude quelques champs - jetez un œil.');return;}
+  if(!FORM_ENDPOINT){toast('Formulaire pas encore branché : rien n\u2019a été envoyé. Gardez votre idée au chaud, on ouvre très vite.');return;}
   const b=$('#fSubmit');b.disabled=true;
   const old=b.childNodes[0].textContent;b.childNodes[0].textContent='Envoi en cours… ';
-  setTimeout(()=>{
-    b.disabled=false;b.childNodes[0].textContent=old;
-    e.target.reset();
-    $$('.field.invalid').forEach(f=>f.classList.remove('invalid'));
-    toast('Message bien reçu - l\u2019atelier répond sous 24 h ouvrées.');},900);});
- $$('#contactForm input, #contactForm textarea').forEach(el=>el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid')));
+  try{
+    const r=await fetch(FORM_ENDPOINT,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(!r.ok)throw new Error(r.status);
+    form.reset();$$('.field.invalid').forEach(f=>f.classList.remove('invalid'));
+    toast('Message bien envoyé - merci ! On vous répond dès que possible.');
+  }catch(err){toast('L\u2019envoi a échoué - réessayez un peu plus tard.');}
+  finally{b.disabled=false;b.childNodes[0].textContent=old;}});
+$$('#contactForm input, #contactForm textarea').forEach(el=>el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid')));
 </script>
 </body>
 </html>
