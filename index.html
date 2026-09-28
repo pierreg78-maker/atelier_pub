@@ -379,7 +379,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <button class="sw" style="--sc:var(--c-puzzle)"  data-name="N°02 - Puzzle"        data-target="card-puzzle"  aria-label="Aller au Studio Puzzle"></button>
           <button class="sw" style="--sc:var(--c-mots)"    data-name="N°03 - Mots"          data-target="card-mots"    aria-label="Aller au Studio Mots"></button>
           <button class="sw" style="--sc:var(--c-briques)" data-name="N°04 - Casse-briques" data-target="card-briques" aria-label="Aller au Studio Casse-briques"></button>
-          <button class="sw" style="--sc:var(--c-attrape)" data-name="N°05 - Attrape"       data-target="card-attrape" aria-label="Aller au Studio Attrape"></button>
+          <button class="sw" style="--sc:var(--c-attrape)" data-name="N°05 - Course"        data-target="card-attrape" aria-label="Aller au Studio Mini course"></button>
           <button class="sw" style="--sc:var(--c-quiz)"    data-name="N°06 - Quiz"          data-target="card-quiz"    aria-label="Aller au Studio Quiz"></button>
         </div>
       </div>
@@ -414,8 +414,8 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em>Nouvel atelier, vieux métier<em>✳</em></span>
-    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Attrape-tout<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em>Nouvel atelier, vieux métier<em>✳</em></span>
+    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Mini course<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em>Nouvel atelier, vieux métier<em>✳</em></span>
+    <span>Mémo<em>✳</em>Puzzle<em>✳</em>Mots mêlés<em>✳</em>Casse-briques<em>✳</em>Mini course<em>✳</em>Quiz<em>✳</em>Agents IA : de la veille au site web<em>✳</em>Tous jouables ici-même<em>✳</em>Nouvel atelier, vieux métier<em>✳</em></span>
   </div>
 </div>
 
@@ -506,21 +506,21 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
         </div>
       </article>
 
-      <!-- N°05 ATTRAPE -->
+      <!-- N°05 MINI COURSE (ids card-attrape / cvAttrape conservés) -->
       <article class="studio-card reveal" id="card-attrape">
-        <div class="card-head"><span class="card-num">N°05</span><span class="card-tag">Studio spécialisé - Attrape-tout</span></div>
-        <h3>L'Attrape-tout</h3>
-        <p class="card-desc">Ce qui tombe du ciel de la marque, on l'attrape ; ce qui tombe mal, on l'esquive. Quinze secondes, un panier, des réflexes - la souris suffit.</p>
+        <div class="card-head"><span class="card-num">N°05</span><span class="card-tag">Studio spécialisé - Mini course</span></div>
+        <h3>La Mini course</h3>
+        <p class="card-desc">Vue de haut : la route défile, vous vous déplacez latéralement. Esquivez les obstacles, ramassez les bonus accélération - logos peints à plat sur la chaussée.</p>
         <div class="game-frame">
           <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-          <div class="gf-bar"><b>Plateau de démo - Attrape</b>
+          <div class="gf-bar"><b>Plateau de démo - Course</b>
             <span class="gf-right"><span class="gf-status" id="atStatus">Prêt - 15 s au chrono</span>
             <button class="mini-btn txt" id="atStart">DÉMARRER</button></span>
           </div>
-          <canvas class="game-canvas" id="cvAttrape" width="340" height="224" aria-label="Démo d'attrape-tout - bougez la souris pour jouer"></canvas>
+          <canvas class="game-canvas" id="cvAttrape" width="340" height="224" aria-label="Démo Mini course - déplacez la voiture à la souris, au doigt ou avec les flèches"></canvas>
         </div>
         <div class="card-foot">
-          <span class="card-note">Les imprévus tombent aussi. D'où le −1</span>
+          <span class="card-note">Boost +10 · Obstacle −5 · pas de game over immédiat</span>
           <a class="btn btn-line" href="studio_attrape.html">Ouvrir le studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </article>
@@ -727,7 +727,7 @@ footer{padding:36px 0;border-top:2px solid var(--ink)}
           <option value="puzzle">Le Puzzle - Studio Puzzle</option>
           <option value="mots">Les Mots mêlés - Studio Mots</option>
           <option value="briques">Le Casse-briques - Studio Briques</option>
-          <option value="attrape">L'Attrape-tout - Studio Attrape</option>
+          <option value="attrape">La Mini course - Studio Course</option>
           <option value="quiz">Le Quiz - Studio Quiz</option>
           <option value="agents">Tester l'équipe d'agents IA</option>
           <option value="mission">Tester une mission marketing ponctuelle</option>
@@ -937,57 +937,97 @@ const SHAPES=[
   addEventListener('resize',fit);fit();newGame();
 })();
 
-/* ================= DÉMO ATTRAPE-TOUT ================= */
+/* ================= DÉMO MINI COURSE (cvAttrape) ================= */
 (function(){
   const cv=$('#cvAttrape'),ctx=cv.getContext('2d'),status=$('#atStatus'),btn=$('#atStart'),card=$('#card-attrape');
-  const W=340,H=224,DUR=15,BY=H-20,SC=()=>scOf(card);
+  const W=340,H=224,DUR=15,SC=()=>scOf(card);
   let dpr=1,blink=0,lastRem=DUR;
-  const S={mode:'idle',score:0,bx:W/2,bw:56,items:[],floats:[],t0:0,spawnAt:0,keys:{}};
+  const S={mode:'idle',score:0,px:W/2,items:[],floats:[],t0:0,spawnAt:0,keys:{},scroll:0,speed:180,boostT:0,flash:0,distAcc:0};
+  const LANE=168,LEFT=(W-LANE)/2,RIGHT=LEFT+LANE,CX=W/2,CY=H-42;
   function fit(){dpr=Math.min(2,devicePixelRatio||1);cv.width=W*dpr;cv.height=H*dpr;draw();}
   function rr(x,y,w,h,r){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h);}
-  cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();S.bx=Math.max(S.bw/2+4,Math.min(W-S.bw/2-4,(e.clientX-r.left)*W/r.width));});
-  addEventListener('keydown',e=>{if(e.key==='ArrowLeft')S.keys.l=1;if(e.key==='ArrowRight')S.keys.r=1;});
+  function clampX(x){return Math.max(LEFT+16,Math.min(RIGHT-16,x));}
+  cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();S.px=clampX((e.clientX-r.left)*W/r.width);});
+  cv.addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect();S.px=clampX((e.clientX-r.left)*W/r.width);});
+  addEventListener('keydown',e=>{if(S.mode!=='play'||/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;if(e.key==='ArrowLeft'){S.keys.l=1;e.preventDefault();}if(e.key==='ArrowRight'){S.keys.r=1;e.preventDefault();}});
   addEventListener('keyup',e=>{if(e.key==='ArrowLeft')S.keys.l=0;if(e.key==='ArrowRight')S.keys.r=0;});
-  function start(){S.mode='play';S.score=0;S.items=[];S.floats=[];S.t0=performance.now();S.spawnAt=S.t0+350;lastRem=DUR;btn.disabled=true;btn.textContent='EN JEU…';status.textContent='Cadeaux : attrapez. Imprévus : esquivez.';}
+  function start(){S.mode='play';S.score=0;S.items=[];S.floats=[];S.t0=performance.now();S.spawnAt=S.t0+400;S.scroll=0;S.speed=180;S.boostT=0;S.flash=0;S.distAcc=0;S.px=CX;lastRem=DUR;btn.disabled=true;btn.textContent='EN JEU…';status.textContent='Esquivez · ramassez les bonus';}
   btn.addEventListener('click',start);
   cv.addEventListener('click',()=>{if(S.mode==='over')start();});
   function update(now,dt){
-    if(S.keys.l)S.bx=Math.max(S.bw/2+4,S.bx-320*dt);
-    if(S.keys.r)S.bx=Math.min(W-S.bw/2-4,S.bx+320*dt);
-    if(S.mode!=='play')return;
+    if(S.keys.l)S.px=clampX(S.px-300*dt);
+    if(S.keys.r)S.px=clampX(S.px+300*dt);
+    if(S.mode!=='play'){S.scroll+=70*dt;return;}
     const elapsed=(now-S.t0)/1000,rem=Math.ceil(DUR-elapsed);
     if(rem!==lastRem&&rem>0){lastRem=rem;status.textContent=rem+' s - score '+S.score;}
     if(elapsed>=DUR){S.mode='over';btn.disabled=false;btn.textContent='REJOUER';
       status.textContent='Terminé - score : '+S.score+'. Cliquez pour rejouer.';addPlay();
-      if(S.score>=18)toast('Score de '+S.score+' à l\u2019attrape-tout : le Studio Attrape s\u2019incline.');return;}
-    if(now>=S.spawnAt){S.items.push({x:20+Math.random()*(W-40),y:-10,vy:55+Math.random()*55+elapsed*4.5,good:Math.random()<.72,done:false});S.spawnAt=now+360+Math.random()*300;}
+      if(S.score>=40)toast('Score de '+S.score+' en Mini course : le Studio Course s\u2019incline.');return;}
+    if(S.boostT>0){S.boostT-=dt;S.speed=Math.min(360,240+S.boostT*50);}
+    else S.speed=Math.max(160,180+elapsed*5);
+    if(S.flash>0)S.flash-=dt;
+    S.scroll+=S.speed*dt;
+    S.distAcc+=S.speed*dt;
+    while(S.distAcc>=80){S.distAcc-=80;S.score+=1;}
+    if(now>=S.spawnAt){
+      const boost=Math.random()<.4;
+      const size=boost?12:14+Math.random()*6;
+      S.items.push({x:LEFT+18+Math.random()*(LANE-36),y:-size,r:size,boost,done:false,rot:(Math.random()-.5)*.4});
+      S.spawnAt=now+480+Math.random()*420;
+    }
     for(const it of S.items){
-      it.y+=it.vy*dt;
-      if(!it.done&&it.y+7>=BY&&it.y+7<=BY+15&&Math.abs(it.x-S.bx)<=S.bw/2+6){
+      it.y+=S.speed*dt;it.rot+=dt*.4;
+      if(!it.done&&Math.abs(it.x-S.px)<it.r+10&&Math.abs(it.y-CY)<it.r+16){
         it.done=true;
-        if(it.good){S.score++;S.floats.push({x:it.x,y:BY-8,txt:'+1',col:SC(),life:1});}
-        else{S.score=Math.max(0,S.score-1);S.floats.push({x:it.x,y:BY-8,txt:'−1',col:ACCENT,life:1});}
-        status.textContent=Math.max(1,rem)+' s - score '+S.score;}}
-    S.items=S.items.filter(it=>!it.done&&it.y<H+14);
-    S.floats.forEach(f=>{f.y-=30*dt;f.life-=dt*1.5;});
-    S.floats=S.floats.filter(f=>f.life>0);}
+        if(it.boost){S.score+=10;S.boostT=Math.min(2.5,S.boostT+1.2);S.floats.push({x:it.x,y:it.y,txt:'+10',col:SC(),life:1});}
+        else{S.score=Math.max(0,S.score-5);S.speed*=.5;S.boostT=0;S.flash=.3;S.floats.push({x:it.x,y:it.y,txt:'−5',col:ACCENT,life:1});}
+        status.textContent=Math.max(1,rem)+' s - score '+S.score;
+      }
+    }
+    S.items=S.items.filter(it=>!it.done&&it.y<H+20);
+    S.floats.forEach(f=>{f.y-=28*dt;f.life-=dt*1.5;});
+    S.floats=S.floats.filter(f=>f.life>0);
+  }
   function draw(){
     blink+=.05;ctx.setTransform(dpr,0,0,dpr,0,0);
     ctx.fillStyle='#EDE4CF';ctx.fillRect(0,0,W,H);
-    ctx.fillStyle=SC();rr(S.bx-S.bw/2,BY-4,S.bw,6,3);ctx.fill();ctx.strokeStyle=INK;ctx.lineWidth=1.5;ctx.stroke();
-    ctx.fillStyle=INK;rr(S.bx-S.bw/2+3,BY+2,S.bw-6,11,3);ctx.fill();
+    // road
+    ctx.fillStyle='#2A2418';ctx.fillRect(LEFT,0,LANE,H);
+    ctx.strokeStyle=SC();ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(LEFT+2,0);ctx.lineTo(LEFT+2,H);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(RIGHT-2,0);ctx.lineTo(RIGHT-2,H);ctx.stroke();
+    ctx.strokeStyle='rgba(26,21,16,.45)';ctx.lineWidth=2;ctx.setLineDash([12,10]);
+    ctx.lineDashOffset=-S.scroll*.7;
+    ctx.beginPath();ctx.moveTo(CX,0);ctx.lineTo(CX,H);ctx.stroke();
+    ctx.setLineDash([]);
+    // items
     for(const it of S.items){
-      if(it.good){ctx.fillStyle=SC();ctx.strokeStyle=INK;ctx.lineWidth=1.5;rr(it.x-8,it.y-6,16,13,2.5);ctx.fill();ctx.stroke();
-        ctx.fillStyle=PAPER;ctx.fillRect(it.x-1.5,it.y-6,3,13);ctx.fillRect(it.x-8,it.y-1.5,16,3);}
-      else{ctx.fillStyle=INK;ctx.beginPath();ctx.arc(it.x,it.y,7,0,7);ctx.fill();
-        ctx.strokeStyle=PAPER;ctx.lineWidth=1.6;ctx.beginPath();
-        ctx.moveTo(it.x-3.2,it.y-3.2);ctx.lineTo(it.x+3.2,it.y+3.2);ctx.moveTo(it.x+3.2,it.y-3.2);ctx.lineTo(it.x-3.2,it.y+3.2);ctx.stroke();}}
-    ctx.textAlign='center';ctx.font='700 12px "Space Mono", monospace';
+      ctx.save();ctx.translate(it.x,it.y);ctx.rotate(it.rot||0);
+      if(it.boost){
+        ctx.fillStyle=SC();ctx.beginPath();ctx.arc(0,0,it.r,0,7);ctx.fill();
+        ctx.strokeStyle=INK;ctx.lineWidth=1.4;ctx.stroke();
+        ctx.fillStyle=PAPER;ctx.font='700 9px "Space Mono",monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('B',0,1);
+      }else{
+        ctx.fillStyle=INK;rr(-it.r*.7,-it.r,it.r*1.4,it.r*2,2);ctx.fill();
+        ctx.fillStyle=ACCENT;ctx.fillRect(-it.r*.5,-2,it.r,4);
+      }
+      ctx.restore();
+    }
+    // car top-down
+    const cw=14,ch=24;
+    ctx.fillStyle='rgba(0,0,0,.2)';rr(S.px-cw/2+2,CY+ch/2-2,cw,6,2);ctx.fill();
+    ctx.fillStyle=SC();rr(S.px-cw/2,CY-ch/2,cw,ch,3);ctx.fill();
+    ctx.strokeStyle=INK;ctx.lineWidth=1.4;ctx.stroke();
+    ctx.fillStyle=PAPER;rr(S.px-4,CY-4,8,7,1.5);ctx.fill();
+    if(S.boostT>0){ctx.strokeStyle=SC();ctx.lineWidth=1.5;rr(S.px-cw/2-2,CY-ch/2-2,cw+4,ch+4,4);ctx.stroke();}
+    if(S.flash>0){ctx.fillStyle='rgba(192,57,43,'+(S.flash*.5)+')';rr(S.px-cw/2-3,CY-ch/2-3,cw+6,ch+6,4);ctx.fill();}
+    ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.font='700 12px "Space Mono", monospace';
     for(const f of S.floats){ctx.globalAlpha=Math.max(0,f.life);ctx.fillStyle=f.col;ctx.fillText(f.txt,f.x,f.y);}
     ctx.globalAlpha=1;ctx.fillStyle=INK;
-    if(S.mode==='idle'){ctx.globalAlpha=.5+.5*Math.sin(blink*2);ctx.font='700 10px "Space Mono", monospace';ctx.fillText('15 SECONDES - CLIQUEZ SUR DÉMARRER',W/2,H/2+4);ctx.globalAlpha=1;}
+    if(S.mode==='idle'){ctx.globalAlpha=.5+.5*Math.sin(blink*2);ctx.font='700 10px "Space Mono", monospace';ctx.fillText('15 S - DÉPLACEZ-VOUS À LA SOURIS',W/2,H/2+4);ctx.globalAlpha=1;}
     if(S.mode==='over'){ctx.font='800 21px "Bricolage Grotesque", sans-serif';ctx.fillText('TEMPS !',W/2,H/2-4);
-      ctx.font='700 10px "Space Mono", monospace';ctx.fillText('score : '+S.score+' - cliquez pour rejouer',W/2,H/2+16);}}
+      ctx.font='700 10px "Space Mono", monospace';ctx.fillText('score : '+S.score+' - cliquez pour rejouer',W/2,H/2+16);}
+  }
   let visible=false,running=false,last=0;
   function loop(ts){if(!visible){running=false;return;}const dt=Math.min(.033,(ts-last)/1000||.016);last=ts;update(ts,dt);draw();requestAnimationFrame(loop);}
   new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible&&!running){running=true;last=performance.now();requestAnimationFrame(loop);}}).observe(cv);
